@@ -53,7 +53,7 @@ The client automatically detects error responses and throws appropriate exceptio
 
 ```java
 try {
-    QuoteResponse quote = client.quote("AAPL").asModel();
+    QuoteResponse quote = client.quote("AAPL").asObject();
 } catch (BadRequestException e) {
     System.out.println("Invalid parameters: " + e.getMessage());
 } catch (UnauthorizedException e) {
@@ -72,7 +72,7 @@ For more detailed error handling, you can catch specific exceptions:
 
 ```java
 try {
-    TimeSeriesResponse timeSeries = client.timeSeries("AAPL", "1day").asModel();
+    TimeSeriesResponse timeSeries = client.timeSeries("AAPL", "1day").asObject();
 } catch (BadRequestException e) {
     // Handle invalid parameters
     System.out.println("Check your parameters: " + e.getMessage());
@@ -135,7 +135,7 @@ if (error != null) {
 
 ```java
 try {
-    QuoteResponse quote = client.quote("AAPL").asModel();
+    QuoteResponse quote = client.quote("AAPL").asObject();
     // Process successful response
 } catch (TwelveDataException e) {
     // Always handle API errors
@@ -149,7 +149,7 @@ try {
 public QuoteResponse getQuoteWithRetry(String symbol, int maxRetries) {
     for (int attempt = 1; attempt <= maxRetries; attempt++) {
         try {
-            return client.quote(symbol).asModel();
+            return client.quote(symbol).asObject();
         } catch (RateLimitException e) {
             if (attempt == maxRetries) {
                 throw e;
@@ -187,7 +187,7 @@ public QuoteResponse getQuote(String symbol) {
     }
     
     try {
-        return client.quote(symbol.trim()).asModel();
+        return client.quote(symbol.trim()).asObject();
     } catch (BadRequestException e) {
         throw new IllegalArgumentException("Invalid symbol: " + symbol, e);
     }
@@ -198,7 +198,7 @@ public QuoteResponse getQuote(String symbol) {
 
 ```java
 try {
-    TimeSeriesResponse response = client.timeSeries("AAPL", "1day").asModel();
+    TimeSeriesResponse response = client.timeSeries("AAPL", "1day").asObject();
 } catch (RateLimitException e) {
     logger.warn("Rate limit exceeded, will retry later: " + e.getMessage());
     // Implement rate limiting logic

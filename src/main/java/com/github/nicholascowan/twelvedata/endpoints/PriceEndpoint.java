@@ -77,7 +77,7 @@ public class PriceEndpoint extends Endpoint {
      * @return PriceResponse object
      * @throws com.github.nicholascowan.twelvedata.exceptions.TwelveDataException if the request fails
      */
-    public PriceResponse asModel() throws com.github.nicholascowan.twelvedata.exceptions.TwelveDataException {
+    public PriceResponse asObject() throws com.github.nicholascowan.twelvedata.exceptions.TwelveDataException {
         return ModelUtils.toPriceResponse(asJson());
     }
 } 

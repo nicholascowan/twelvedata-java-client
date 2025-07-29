@@ -138,7 +138,7 @@ public class TimeSeriesEndpoint extends Endpoint {
      * @return TimeSeriesResponse object
      * @throws com.github.nicholascowan.twelvedata.exceptions.TwelveDataException if the request fails
      */
-    public TimeSeriesResponse asModel() throws com.github.nicholascowan.twelvedata.exceptions.TwelveDataException {
+    public TimeSeriesResponse asObject() throws com.github.nicholascowan.twelvedata.exceptions.TwelveDataException {
         return ModelUtils.toTimeSeriesResponse(asJson());
     }
 } 

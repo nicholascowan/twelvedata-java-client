@@ -109,7 +109,7 @@ public class QuoteEndpoint extends Endpoint {
      * @return QuoteResponse object
      * @throws com.github.nicholascowan.twelvedata.exceptions.TwelveDataException if the request fails
      */
-    public QuoteResponse asModel() throws com.github.nicholascowan.twelvedata.exceptions.TwelveDataException {
+    public QuoteResponse asObject() throws com.github.nicholascowan.twelvedata.exceptions.TwelveDataException {
         return ModelUtils.toQuoteResponse(asJson());
     }
 } 

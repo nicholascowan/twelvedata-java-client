@@ -67,14 +67,14 @@ JsonNode data = ts.asJson();
 // Get CSV response
 String csvData = ts.asCsv();
 
-// Get typed model response
-TimeSeriesResponse timeSeriesData = ts.asModel();
+// Get typed object response
+TimeSeriesResponse timeSeriesData = ts.asObject();
 
 // Get quote data
-QuoteResponse quoteData = client.quote("AAPL").asModel();
+QuoteResponse quoteData = client.quote("AAPL").asObject();
 
 // Get price data
-PriceResponse priceData = client.price("AAPL").asModel();
+PriceResponse priceData = client.price("AAPL").asObject();
 
 // Access model properties
 System.out.println("Symbol: " + quoteData.getSymbol());
@@ -91,7 +91,7 @@ System.out.println("Latest Close: " + latestValue.getCloseAsDouble());
 
 // Error handling
 try {
-    QuoteResponse quoteData = client.quote("INVALID_SYMBOL").asModel();
+    QuoteResponse quoteData = client.quote("INVALID_SYMBOL").asObject();
 } catch (RateLimitException e) {
     System.out.println("Rate limit exceeded: " + e.getMessage());
     System.out.println("Error code: " + e.getErrorCode());
