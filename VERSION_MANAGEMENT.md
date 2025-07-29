@@ -29,34 +29,7 @@ The easiest way to bump versions is using the GitHub Actions workflow:
 - **Build verification** to confirm the project builds successfully
 - **Detailed summary** of the version bump process
 
-### 2. Local Script
 
-For local development, you can use the provided bash script:
-
-```bash
-# Make sure the script is executable
-chmod +x scripts/bump-version.sh
-
-# Bump patch version (0.0.1 -> 0.0.2)
-./scripts/bump-version.sh patch
-
-# Bump minor version (0.0.1 -> 0.1.0)
-./scripts/bump-version.sh minor
-
-# Bump major version (0.0.1 -> 1.0.0)
-./scripts/bump-version.sh major
-
-# Set specific version
-./scripts/bump-version.sh 1.2.3
-```
-
-#### Script Features
-
-- **Colored output** for better readability
-- **Version validation** to ensure proper format
-- **Automatic testing** after version update
-- **Build verification** to confirm everything works
-- **Helpful commit instructions** at the end
 
 ## Version Bump Types
 
@@ -100,8 +73,8 @@ mvn clean test package
 
 ## Release Process
 
-1. **Bump version** using GitHub Actions or local script
-2. **Review changes** in the pull request (if using GitHub Actions)
+1. **Bump version** using GitHub Actions workflow
+2. **Review changes** in the pull request
 3. **Merge changes** to main branch
 4. **Create a release** on GitHub
 5. **Tag the release** with the version number
@@ -119,13 +92,11 @@ mvn clean test package
 ### Getting Help
 
 - Check the GitHub Actions logs for detailed error information
-- Review the script output for any validation errors
 - Ensure you have the necessary permissions to push to the repository
 
 ## Related Files
 
 - `.github/workflows/bump-version.yml` - GitHub Actions workflow
-- `scripts/bump-version.sh` - Local version bump script
 - `pom.xml` - Maven project configuration
 - `PUBLISHING.md` - Publishing guide
 - `RELEASE_CHECKLIST.md` - Release preparation checklist 

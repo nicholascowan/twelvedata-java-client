@@ -171,24 +171,6 @@ The easiest way to bump versions is using the GitHub Actions workflow:
 3. Click **"Run workflow"**
 4. Choose version bump type: `patch`, `minor`, or `major`
 
-### Local Script
-
-For local development, use the provided bash script:
-
-```bash
-# Bump patch version (0.0.1 -> 0.0.2)
-./scripts/bump-version.sh patch
-
-# Bump minor version (0.0.1 -> 0.1.0)
-./scripts/bump-version.sh minor
-
-# Bump major version (0.0.1 -> 1.0.0)
-./scripts/bump-version.sh major
-
-# Set specific version
-./scripts/bump-version.sh 1.2.3
-```
-
 For detailed version management instructions, see [VERSION_MANAGEMENT.md](VERSION_MANAGEMENT.md).
 
 ## License
