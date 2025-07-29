@@ -18,11 +18,11 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.boot.version>3.2.0</spring.boot.version>
-        <junit.version>5.10.0</junit.version>
+        <spring.boot.version>3.5.4</spring.boot.version>
+        <junit.version>5.13.4</junit.version>
         <jackson.version>2.19.2</jackson.version>
         <okhttp.version>5.1.0</okhttp.version>
-        <slf4j.version>2.0.9</slf4j.version>
+        <slf4j.version>2.0.17</slf4j.version>
         <gpg.plugin.version>3.2.8</gpg.plugin.version>
         <nexus.plugin.version>1.7.0</nexus.plugin.version>
     </properties>
