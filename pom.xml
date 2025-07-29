@@ -21,7 +21,7 @@
         <spring.boot.version>3.2.0</spring.boot.version>
         <junit.version>5.10.0</junit.version>
         <jackson.version>2.19.2</jackson.version>
-        <okhttp.version>4.12.0</okhttp.version>
+        <okhttp.version>5.1.0</okhttp.version>
         <slf4j.version>2.0.9</slf4j.version>
         <gpg.plugin.version>3.2.8</gpg.plugin.version>
         <nexus.plugin.version>1.7.0</nexus.plugin.version>
