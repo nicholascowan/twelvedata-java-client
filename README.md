@@ -13,7 +13,7 @@ A Java client library for the TwelveData API, providing easy access to financial
 Clone the repository and build the project:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/nicholascowan/twelvedata-java-client.git
 cd twelvedata-java-client
 mvn clean install
 ```
@@ -143,7 +143,7 @@ The project includes GitHub Actions workflows for:
     <repository>
         <id>github</id>
         <name>GitHub Packages</name>
-        <url>https://maven.pkg.github.com/twelvedata/twelvedata-java-client</url>
+        <url>https://maven.pkg.github.com/nicholascowan/twelvedata-java-client</url>
     </repository>
 </repositories>
 
@@ -175,4 +175,4 @@ For detailed version management instructions, see [VERSION_MANAGEMENT.md](VERSIO
 
 ## License
 
-MIT License - see LICENSE file for details. 
+MIT License - see [LICENSE](LICENSE.txt) file for details. 

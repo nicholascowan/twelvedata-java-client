@@ -12,7 +12,7 @@
 
     <name>TwelveData Java Client</name>
     <description>A Java client library for the TwelveData API</description>
-    <url>https://github.com/twelvedata/twelvedata-java-client</url>
+    <url>https://github.com/nicholascowan/twelvedata-java-client</url>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

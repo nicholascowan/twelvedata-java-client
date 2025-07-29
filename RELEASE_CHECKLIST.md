@@ -40,7 +40,7 @@ Use this checklist when preparing a new release of the TwelveData Java Client.
 After publishing the release, verify:
 
 - [ ] **GitHub Package Registry**:
-  - Check https://github.com/twelvedata/twelvedata-java-client/packages
+  - Check https://github.com/nicholascowan/twelvedata-java-client/packages
   - Verify new version appears
   - Test installation from GitHub Packages
 
