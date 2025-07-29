@@ -6,6 +6,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.nicholascowan.twelvedata.exceptions.TwelveDataException;
 import com.github.nicholascowan.twelvedata.exceptions.RateLimitException;
 import com.github.nicholascowan.twelvedata.exceptions.ServerErrorException;
+import com.github.nicholascowan.twelvedata.exceptions.BadRequestException;
+import com.github.nicholascowan.twelvedata.exceptions.UnauthorizedException;
+import com.github.nicholascowan.twelvedata.exceptions.ForbiddenException;
+import com.github.nicholascowan.twelvedata.exceptions.NotFoundException;
+import com.github.nicholascowan.twelvedata.exceptions.ParameterTooLongException;
 
 import java.util.List;
 
@@ -35,14 +40,30 @@ public class ModelUtils {
                 
                 // Throw specific exceptions based on error code
                 if (code != null) {
-                    if (code == 429) {
-                        throw new RateLimitException(message);
-                    } else if (code >= 500) {
-                        throw new ServerErrorException(message, code);
+                    switch (code) {
+                        case 400:
+                            throw new BadRequestException(message);
+                        case 401:
+                            throw new UnauthorizedException(message);
+                        case 403:
+                            throw new ForbiddenException(message);
+                        case 404:
+                            throw new NotFoundException(message);
+                        case 414:
+                            throw new ParameterTooLongException(message);
+                        case 429:
+                            throw new RateLimitException(message);
+                        case 500:
+                            throw new ServerErrorException(message, code);
+                        default:
+                            if (code >= 500) {
+                                throw new ServerErrorException(message, code);
+                            }
+                            throw new TwelveDataException(message, code);
                     }
                 }
                 
-                throw new TwelveDataException(message, code != null ? code : 0);
+                throw new TwelveDataException(message, 0);
             }
         }
     }
