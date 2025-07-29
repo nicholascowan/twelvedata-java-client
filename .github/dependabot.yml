@@ -22,10 +22,9 @@ updates:
     allow:
       - dependency-type: "direct"
     # Ignore specific dependencies if needed
-    ignore:
-      # Uncomment if you want to ignore specific dependencies
-      # - dependency-name: "org.springframework.boot:spring-boot-starter-*"
-      #   versions: ["3.0.x"]
+    # ignore:
+    #   - dependency-name: "org.springframework.boot:spring-boot-starter-*"
+    #     versions: ["3.0.x"]
     # Commit message configuration
     commit-message:
       prefix: "deps"
