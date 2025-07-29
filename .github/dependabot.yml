@@ -1,0 +1,51 @@
+version: 2
+updates:
+  # Enable version updates for Maven
+  - package-ecosystem: "maven"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    # Limit to 5 open pull requests for dependency updates
+    open-pull-requests-limit: 5
+    # Group minor and patch updates together
+    groups:
+      maven-dependencies:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+    # Allow direct dependencies only
+    allow:
+      - dependency-type: "direct"
+    # Ignore specific dependencies if needed
+    # ignore:
+    #   - dependency-name: "org.springframework.boot:spring-boot-starter-*"
+    #     versions: ["3.0.x"]
+    # Commit message configuration
+    commit-message:
+      prefix: "deps"
+      prefix-development: "deps-dev"
+      include: "scope"
+    # Labels for pull requests
+    labels:
+      - "dependencies"
+      - "maven"
+      - "automated"
+    # Reviewers (optional - uncomment and add usernames)
+    # reviewers:
+    #   - "maintainer1"
+    #   - "maintainer2"
+    # Assignees (optional - uncomment and add usernames)
+    # assignees:
+    #   - "maintainer1"
+    #   - "maintainer2"
+    # Milestone (optional)
+    # milestone: 1
+    # Target specific branches (optional)
+    # target-branch: "develop"
+    # Rebase strategy
+    rebase-strategy: "auto" 

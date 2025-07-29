@@ -1,0 +1,51 @@
+title: TwelveData Java Client
+description: A comprehensive Java client library for the TwelveData API
+url: "https://nicholascowan.github.io"
+baseurl: "/twelvedata-java-client"
+
+# GitHub Pages settings
+github:
+  repository_url: "https://github.com/nicholascowan/twelvedata-java-client"
+  repository_name: "twelvedata-java-client"
+
+# Jekyll settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+theme: minima
+
+# Sass settings to avoid deprecation warnings
+sass:
+  load_paths:
+    - _sass
+    - assets/css
+  style: compressed
+
+# Collections
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "docs"
+    values:
+      layout: "default"
+
+# Plugins
+plugins:
+  - jekyll-relative-links
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/ 
