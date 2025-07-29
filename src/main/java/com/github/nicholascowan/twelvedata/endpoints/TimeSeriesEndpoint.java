@@ -1,6 +1,8 @@
 package com.github.nicholascowan.twelvedata.endpoints;
 
 import com.github.nicholascowan.twelvedata.TwelveDataContext;
+import com.github.nicholascowan.twelvedata.models.TimeSeriesResponse;
+import com.github.nicholascowan.twelvedata.models.ModelUtils;
 
 /**
  * Endpoint for time series data (OHLC).
@@ -128,5 +130,15 @@ public class TimeSeriesEndpoint extends Endpoint {
     public TimeSeriesEndpoint adjust(String adjust) {
         addParam("adjust", adjust);
         return this;
+    }
+    
+    /**
+     * Get time series data as a typed model object.
+     * 
+     * @return TimeSeriesResponse object
+     * @throws com.github.nicholascowan.twelvedata.exceptions.TwelveDataException if the request fails
+     */
+    public TimeSeriesResponse asModel() throws com.github.nicholascowan.twelvedata.exceptions.TwelveDataException {
+        return ModelUtils.toTimeSeriesResponse(asJson());
     }
 } 

@@ -63,11 +63,27 @@ JsonNode data = ts.asJson();
 // Get CSV response
 String csvData = ts.asCsv();
 
+// Get typed model response
+TimeSeriesResponse timeSeriesData = ts.asModel();
+
 // Get quote data
-JsonNode quoteData = client.quote("AAPL").asJson();
+QuoteResponse quoteData = client.quote("AAPL").asModel();
 
 // Get price data
-JsonNode priceData = client.price("AAPL").asJson();
+PriceResponse priceData = client.price("AAPL").asModel();
+
+// Access model properties
+System.out.println("Symbol: " + quoteData.getSymbol());
+System.out.println("Current Price: " + quoteData.getClose());
+System.out.println("Market Open: " + quoteData.getIsMarketOpen());
+
+// Get numeric values
+Double currentPrice = quoteData.getCloseAsDouble();
+Long volume = quoteData.getVolumeAsLong();
+
+// Access time series data
+TimeSeriesValue latestValue = timeSeriesData.getLatestValue();
+System.out.println("Latest Close: " + latestValue.getCloseAsDouble());
 ```
 
 ## Building

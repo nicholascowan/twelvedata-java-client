@@ -1,0 +1,153 @@
+package com.github.nicholascowan.twelvedata.models;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
+
+import java.util.List;
+
+/**
+ * Utility class for converting JSON responses to model objects.
+ */
+public class ModelUtils {
+    private static final ObjectMapper objectMapper = new ObjectMapper();
+    
+    /**
+     * Convert JsonNode to TimeSeriesResponse.
+     */
+    public static TimeSeriesResponse toTimeSeriesResponse(JsonNode jsonNode) {
+        if (jsonNode == null) {
+            return null;
+        }
+        
+        TimeSeriesResponse response = new TimeSeriesResponse();
+        
+        if (jsonNode.has("status")) {
+            response.setStatus(jsonNode.get("status").asText());
+        }
+        
+        if (jsonNode.has("meta")) {
+            JsonNode metaNode = jsonNode.get("meta");
+            TimeSeriesMeta meta = new TimeSeriesMeta();
+            
+            if (metaNode.has("symbol")) meta.setSymbol(metaNode.get("symbol").asText());
+            if (metaNode.has("interval")) meta.setInterval(metaNode.get("interval").asText());
+            if (metaNode.has("currency")) meta.setCurrency(metaNode.get("currency").asText());
+            if (metaNode.has("exchange_timezone")) meta.setExchangeTimezone(metaNode.get("exchange_timezone").asText());
+            if (metaNode.has("exchange")) meta.setExchange(metaNode.get("exchange").asText());
+            if (metaNode.has("mic_code")) meta.setMicCode(metaNode.get("mic_code").asText());
+            if (metaNode.has("type")) meta.setType(metaNode.get("type").asText());
+            
+            response.setMeta(meta);
+        }
+        
+        if (jsonNode.has("values") && jsonNode.get("values").isArray()) {
+            try {
+                List<TimeSeriesValue> values = objectMapper.convertValue(
+                    jsonNode.get("values"), 
+                    new TypeReference<List<TimeSeriesValue>>() {}
+                );
+                response.setValues(values);
+            } catch (Exception e) {
+                // Fallback to manual parsing if automatic conversion fails
+                response.setValues(parseTimeSeriesValues(jsonNode.get("values")));
+            }
+        }
+        
+        return response;
+    }
+    
+    /**
+     * Convert JsonNode to QuoteResponse.
+     */
+    public static QuoteResponse toQuoteResponse(JsonNode jsonNode) {
+        if (jsonNode == null) {
+            return null;
+        }
+        
+        QuoteResponse response = new QuoteResponse();
+        
+        // Basic fields
+        if (jsonNode.has("symbol")) response.setSymbol(jsonNode.get("symbol").asText());
+        if (jsonNode.has("name")) response.setName(jsonNode.get("name").asText());
+        if (jsonNode.has("exchange")) response.setExchange(jsonNode.get("exchange").asText());
+        if (jsonNode.has("mic_code")) response.setMicCode(jsonNode.get("mic_code").asText());
+        if (jsonNode.has("currency")) response.setCurrency(jsonNode.get("currency").asText());
+        if (jsonNode.has("datetime")) response.setDatetime(jsonNode.get("datetime").asText());
+        if (jsonNode.has("timestamp")) response.setTimestamp(jsonNode.get("timestamp").asText());
+        if (jsonNode.has("last_quote_at")) response.setLastQuoteAt(jsonNode.get("last_quote_at").asText());
+        
+        // Price fields
+        if (jsonNode.has("open")) response.setOpen(jsonNode.get("open").asText());
+        if (jsonNode.has("high")) response.setHigh(jsonNode.get("high").asText());
+        if (jsonNode.has("low")) response.setLow(jsonNode.get("low").asText());
+        if (jsonNode.has("close")) response.setClose(jsonNode.get("close").asText());
+        if (jsonNode.has("volume")) response.setVolume(jsonNode.get("volume").asText());
+        if (jsonNode.has("previous_close")) response.setPreviousClose(jsonNode.get("previous_close").asText());
+        if (jsonNode.has("change")) response.setChange(jsonNode.get("change").asText());
+        if (jsonNode.has("percent_change")) response.setPercentChange(jsonNode.get("percent_change").asText());
+        if (jsonNode.has("average_volume")) response.setAverageVolume(jsonNode.get("average_volume").asText());
+        
+        // Boolean field
+        if (jsonNode.has("is_market_open")) {
+            response.setIsMarketOpen(jsonNode.get("is_market_open").asBoolean());
+        }
+        
+        // 52-week data
+        if (jsonNode.has("fifty_two_week")) {
+            JsonNode fiftyTwoWeekNode = jsonNode.get("fifty_two_week");
+            FiftyTwoWeek fiftyTwoWeek = new FiftyTwoWeek();
+            
+            if (fiftyTwoWeekNode.has("low")) fiftyTwoWeek.setLow(fiftyTwoWeekNode.get("low").asText());
+            if (fiftyTwoWeekNode.has("high")) fiftyTwoWeek.setHigh(fiftyTwoWeekNode.get("high").asText());
+            if (fiftyTwoWeekNode.has("low_change")) fiftyTwoWeek.setLowChange(fiftyTwoWeekNode.get("low_change").asText());
+            if (fiftyTwoWeekNode.has("high_change")) fiftyTwoWeek.setHighChange(fiftyTwoWeekNode.get("high_change").asText());
+            if (fiftyTwoWeekNode.has("low_change_percent")) fiftyTwoWeek.setLowChangePercent(fiftyTwoWeekNode.get("low_change_percent").asText());
+            if (fiftyTwoWeekNode.has("high_change_percent")) fiftyTwoWeek.setHighChangePercent(fiftyTwoWeekNode.get("high_change_percent").asText());
+            if (fiftyTwoWeekNode.has("range")) fiftyTwoWeek.setRange(fiftyTwoWeekNode.get("range").asText());
+            
+            response.setFiftyTwoWeek(fiftyTwoWeek);
+        }
+        
+        return response;
+    }
+    
+    /**
+     * Convert JsonNode to PriceResponse.
+     */
+    public static PriceResponse toPriceResponse(JsonNode jsonNode) {
+        if (jsonNode == null) {
+            return null;
+        }
+        
+        PriceResponse response = new PriceResponse();
+        
+        if (jsonNode.has("price")) {
+            response.setPrice(jsonNode.get("price").asText());
+        }
+        
+        return response;
+    }
+    
+    /**
+     * Manual parsing of time series values as fallback.
+     */
+    private static List<TimeSeriesValue> parseTimeSeriesValues(JsonNode valuesNode) {
+        List<TimeSeriesValue> values = new java.util.ArrayList<>();
+        
+        for (JsonNode valueNode : valuesNode) {
+            TimeSeriesValue value = new TimeSeriesValue();
+            
+            if (valueNode.has("datetime")) value.setDatetime(valueNode.get("datetime").asText());
+            if (valueNode.has("open")) value.setOpen(valueNode.get("open").asText());
+            if (valueNode.has("high")) value.setHigh(valueNode.get("high").asText());
+            if (valueNode.has("low")) value.setLow(valueNode.get("low").asText());
+            if (valueNode.has("close")) value.setClose(valueNode.get("close").asText());
+            if (valueNode.has("volume")) value.setVolume(valueNode.get("volume").asText());
+            
+            values.add(value);
+        }
+        
+        return values;
+    }
+} 

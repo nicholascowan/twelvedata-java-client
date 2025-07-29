@@ -1,6 +1,8 @@
 package com.github.nicholascowan.twelvedata.endpoints;
 
 import com.github.nicholascowan.twelvedata.TwelveDataContext;
+import com.github.nicholascowan.twelvedata.models.PriceResponse;
+import com.github.nicholascowan.twelvedata.models.ModelUtils;
 
 /**
  * Endpoint for real-time prices.
@@ -67,5 +69,15 @@ public class PriceEndpoint extends Endpoint {
     public PriceEndpoint micCode(String micCode) {
         addParam("mic_code", micCode);
         return this;
+    }
+    
+    /**
+     * Get price data as a typed model object.
+     * 
+     * @return PriceResponse object
+     * @throws com.github.nicholascowan.twelvedata.exceptions.TwelveDataException if the request fails
+     */
+    public PriceResponse asModel() throws com.github.nicholascowan.twelvedata.exceptions.TwelveDataException {
+        return ModelUtils.toPriceResponse(asJson());
     }
 } 

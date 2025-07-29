@@ -1,6 +1,8 @@
 package com.github.nicholascowan.twelvedata.endpoints;
 
 import com.github.nicholascowan.twelvedata.TwelveDataContext;
+import com.github.nicholascowan.twelvedata.models.QuoteResponse;
+import com.github.nicholascowan.twelvedata.models.ModelUtils;
 
 /**
  * Endpoint for real-time quotes.
@@ -99,5 +101,15 @@ public class QuoteEndpoint extends Endpoint {
     public QuoteEndpoint rollingPeriod(String rollingPeriod) {
         addParam("rolling_period", rollingPeriod);
         return this;
+    }
+    
+    /**
+     * Get quote data as a typed model object.
+     * 
+     * @return QuoteResponse object
+     * @throws com.github.nicholascowan.twelvedata.exceptions.TwelveDataException if the request fails
+     */
+    public QuoteResponse asModel() throws com.github.nicholascowan.twelvedata.exceptions.TwelveDataException {
+        return ModelUtils.toQuoteResponse(asJson());
     }
 } 
