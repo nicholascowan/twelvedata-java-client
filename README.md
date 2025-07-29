@@ -49,6 +49,10 @@ The example demonstrates:
 ## Usage
 
 ```java
+import com.github.nicholascowan.twelvedata.TwelveDataClient;
+import com.github.nicholascowan.twelvedata.models.*;
+import com.github.nicholascowan.twelvedata.exceptions.*;
+
 // Initialize client
 TwelveDataClient client = new TwelveDataClient("your-api-key");
 
@@ -84,7 +88,20 @@ Long volume = quoteData.getVolumeAsLong();
 // Access time series data
 TimeSeriesValue latestValue = timeSeriesData.getLatestValue();
 System.out.println("Latest Close: " + latestValue.getCloseAsDouble());
-```
+
+// Error handling
+try {
+    QuoteResponse quoteData = client.quote("INVALID_SYMBOL").asModel();
+} catch (RateLimitException e) {
+    System.out.println("Rate limit exceeded: " + e.getMessage());
+    System.out.println("Error code: " + e.getErrorCode());
+} catch (ServerErrorException e) {
+    System.out.println("Server error: " + e.getMessage());
+    System.out.println("Error code: " + e.getErrorCode());
+} catch (TwelveDataException e) {
+    System.out.println("API error: " + e.getMessage());
+    System.out.println("Error code: " + e.getErrorCode());
+}
 
 ## Building
 

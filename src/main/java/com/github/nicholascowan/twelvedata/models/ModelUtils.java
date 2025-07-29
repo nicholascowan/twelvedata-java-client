@@ -3,6 +3,9 @@ package com.github.nicholascowan.twelvedata.models;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.github.nicholascowan.twelvedata.exceptions.TwelveDataException;
+import com.github.nicholascowan.twelvedata.exceptions.RateLimitException;
+import com.github.nicholascowan.twelvedata.exceptions.ServerErrorException;
 
 import java.util.List;
 
@@ -13,12 +16,47 @@ public class ModelUtils {
     private static final ObjectMapper objectMapper = new ObjectMapper();
     
     /**
+     * Check if the JSON response contains an error and throw appropriate exception.
+     */
+    private static void checkForError(JsonNode jsonNode) {
+        if (jsonNode.has("status")) {
+            String status = jsonNode.get("status").asText();
+            if ("error".equals(status)) {
+                Integer code = null;
+                String message = "Unknown error";
+                
+                if (jsonNode.has("code")) {
+                    code = jsonNode.get("code").asInt();
+                }
+                
+                if (jsonNode.has("message")) {
+                    message = jsonNode.get("message").asText();
+                }
+                
+                // Throw specific exceptions based on error code
+                if (code != null) {
+                    if (code == 429) {
+                        throw new RateLimitException(message);
+                    } else if (code >= 500) {
+                        throw new ServerErrorException(message, code);
+                    }
+                }
+                
+                throw new TwelveDataException(message, code != null ? code : 0);
+            }
+        }
+    }
+    
+    /**
      * Convert JsonNode to TimeSeriesResponse.
      */
     public static TimeSeriesResponse toTimeSeriesResponse(JsonNode jsonNode) {
         if (jsonNode == null) {
             return null;
         }
+        
+        // Check for error response first
+        checkForError(jsonNode);
         
         TimeSeriesResponse response = new TimeSeriesResponse();
         
@@ -64,6 +102,9 @@ public class ModelUtils {
         if (jsonNode == null) {
             return null;
         }
+        
+        // Check for error response first
+        checkForError(jsonNode);
         
         QuoteResponse response = new QuoteResponse();
         
@@ -120,10 +161,38 @@ public class ModelUtils {
             return null;
         }
         
+        // Check for error response first
+        checkForError(jsonNode);
+        
         PriceResponse response = new PriceResponse();
         
         if (jsonNode.has("price")) {
             response.setPrice(jsonNode.get("price").asText());
+        }
+        
+        return response;
+    }
+    
+    /**
+     * Convert JsonNode to ErrorResponse.
+     */
+    public static ErrorResponse toErrorResponse(JsonNode jsonNode) {
+        if (jsonNode == null) {
+            return null;
+        }
+        
+        ErrorResponse response = new ErrorResponse();
+        
+        if (jsonNode.has("status")) {
+            response.setStatus(jsonNode.get("status").asText());
+        }
+        
+        if (jsonNode.has("code")) {
+            response.setCode(jsonNode.get("code").asInt());
+        }
+        
+        if (jsonNode.has("message")) {
+            response.setMessage(jsonNode.get("message").asText());
         }
         
         return response;

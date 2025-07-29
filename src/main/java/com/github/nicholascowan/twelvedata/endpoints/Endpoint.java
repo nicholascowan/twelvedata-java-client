@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.nicholascowan.twelvedata.TwelveDataContext;
 import com.github.nicholascowan.twelvedata.exceptions.TwelveDataException;
+import com.github.nicholascowan.twelvedata.models.ErrorResponse;
+import com.github.nicholascowan.twelvedata.models.ModelUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -88,6 +90,33 @@ public abstract class Endpoint {
     public String asCsv() throws TwelveDataException {
         try {
             return context.getHttpClient().getCsv("/" + getEndpointName(), params);
+        } catch (Exception e) {
+            throw new TwelveDataException("Failed to execute " + getEndpointName() + " endpoint", e);
+        }
+    }
+    
+    /**
+     * Executes the endpoint request and returns error response if applicable.
+     * 
+     * <p>This method makes an HTTP GET request to the API endpoint and returns
+     * an ErrorResponse object if the API returns an error status.</p>
+     * 
+     * @return the API error response, or null if no error
+     * @throws TwelveDataException if the HTTP request fails
+     */
+    public ErrorResponse asErrorResponse() throws TwelveDataException {
+        try {
+            String response = context.getHttpClient().get("/" + getEndpointName(), params);
+            JsonNode jsonNode = objectMapper.readTree(response);
+            
+            if (jsonNode.has("status")) {
+                String status = jsonNode.get("status").asText();
+                if ("error".equals(status)) {
+                    return ModelUtils.toErrorResponse(jsonNode);
+                }
+            }
+            
+            return null;
         } catch (Exception e) {
             throw new TwelveDataException("Failed to execute " + getEndpointName() + " endpoint", e);
         }
