@@ -9,6 +9,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     if: github.actor == 'dependabot[bot]'
+    permissions:
+      contents: read
+      pull-requests: write
+      checks: write
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
