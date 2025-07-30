@@ -60,7 +60,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Prepare next SNAPSHOT version
       id: next-version
-      if: github.event_name == 'workflow_dispatch'
       run: |
         VERSION=${{ steps.version.outputs.version }}
         # Parse version components
@@ -75,7 +74,6 @@ jobs:
         echo "Next SNAPSHOT version: $NEXT_VERSION"
         sed -i "s/<version>.*<\/version>/<version>$NEXT_VERSION<\/version>/" pom.xml
     - name: Commit and push next SNAPSHOT version
-      if: github.event_name == 'workflow_dispatch'
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
