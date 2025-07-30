@@ -150,7 +150,8 @@
                 </configuration>
             </plugin>
 
-            <!-- Maven Source Plugin -->
+            <!-- Maven Source Plugin - Temporarily disabled for workflow testing -->
+            <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -164,6 +165,7 @@
                     </execution>
                 </executions>
             </plugin>
+            -->
 
             <!-- Maven Javadoc Plugin -->
             <plugin>
