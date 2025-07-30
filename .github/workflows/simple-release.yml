@@ -76,5 +76,5 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add pom.xml
-        git commit -m "Bump to $NEXT_VERSION for next development cycle"
+        git commit -m "Bump to $NEXT_VERSION for next development cycle (was $VERSION)"
         git push origin main 
