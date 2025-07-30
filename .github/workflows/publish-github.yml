@@ -1,10 +1,6 @@
 name: Maven Build and Publish
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
   release:
     types: [published]
   workflow_dispatch:
@@ -15,46 +11,8 @@ on:
         default: ''
 
 jobs:
-  # Job for SNAPSHOT builds on push to main
-  snapshot:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: maven
-    - name: Cache Maven packages
-      uses: actions/cache@v4
-      with:
-        path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-        restore-keys: ${{ runner.os }}-m2
-    - name: Run tests
-      run: mvn clean test
-    - name: Build and deploy SNAPSHOT
-      run: mvn clean deploy -P snapshot -s .github/maven/settings.xml -Dgpg.skip=true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_ACTOR: ${{ github.actor }}
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: snapshot-artifacts
-        path: target/*.jar
-
   # Job for release builds when GitHub release is published
   release:
-    if: github.event_name == 'release'
     runs-on: ubuntu-latest
     permissions:
       contents: read
