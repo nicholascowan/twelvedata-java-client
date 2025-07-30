@@ -7,7 +7,7 @@
 
     <groupId>com.github.nicholascowan.twelvedata</groupId>
     <artifactId>twelvedata-java-client</artifactId>
-    <version>1.0.14</version>
+    <version>1.0.15-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>TwelveData Java Client</name>
@@ -32,14 +32,14 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>1.0.14</version>
+            <version>1.0.15-SNAPSHOT</version>
         </dependency>
 
         <!-- Spring Boot Configuration Processor -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
-            <version>1.0.14</version>
+            <version>1.0.15-SNAPSHOT</version>
             <optional>true</optional>
         </dependency>
 
@@ -47,27 +47,27 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>1.0.14</version>
+            <version>1.0.15-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>1.0.14</version>
+            <version>1.0.15-SNAPSHOT</version>
         </dependency>
 
         <!-- OkHttp for HTTP client -->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp-jvm</artifactId>
-            <version>1.0.14</version>
+            <version>1.0.15-SNAPSHOT</version>
         </dependency>
 
         <!-- OkHttp MockWebServer for testing -->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>mockwebserver</artifactId>
-            <version>1.0.14</version>
+            <version>1.0.15-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
 
@@ -75,42 +75,42 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.0.14</version>
+            <version>1.0.15-SNAPSHOT</version>
         </dependency>
 
         <!-- Test Dependencies -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>1.0.14</version>
+            <version>1.0.15-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>1.0.14</version>
+            <version>1.0.15-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>1.0.14</version>
+            <version>1.0.15-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>1.0.14</version>
+            <version>1.0.15-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
-            <version>1.0.14</version>
+            <version>1.0.15-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
 
@@ -118,7 +118,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <version>1.0.14</version>
+            <version>1.0.15-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -129,32 +129,32 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>1.0.14</version>
+                    <version>1.0.15-SNAPSHOT</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>1.0.14</version>
+                    <version>1.0.15-SNAPSHOT</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
-                    <version>1.0.14</version>
+                    <version>1.0.15-SNAPSHOT</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>1.0.14</version>
+                    <version>1.0.15-SNAPSHOT</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
-                    <version>1.0.14</version>
+                    <version>1.0.15-SNAPSHOT</version>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>exec-maven-plugin</artifactId>
-                    <version>1.0.14</version>
+                    <version>1.0.15-SNAPSHOT</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -163,7 +163,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>1.0.14</version>
+                <version>1.0.15-SNAPSHOT</version>
                 <configuration>
                     <source>17</source>
                     <target>17</target>
@@ -175,7 +175,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>1.0.14</version>
+                <version>1.0.15-SNAPSHOT</version>
                 <configuration>
                     <includes>
                         <include>**/*Test.java</include>
@@ -189,7 +189,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>1.0.14</version>
+                <version>1.0.15-SNAPSHOT</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -206,7 +206,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>1.0.14</version>
+                <version>1.0.15-SNAPSHOT</version>
                 <configuration>
                     <source>17</source>
                     <doclint>none</doclint>
@@ -226,7 +226,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>1.0.14</version>
+                <version>1.0.15-SNAPSHOT</version>
                 <configuration>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
@@ -247,7 +247,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.0.14</version>
+                <version>1.0.15-SNAPSHOT</version>
                 <configuration>
                                             <mainClass>com.github.nicholascowan.twelvedata.example.Example</mainClass>
                     <cleanupDaemonThreads>false</cleanupDaemonThreads>
@@ -315,7 +315,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
-                        <version>1.0.14</version>
+                        <version>1.0.15-SNAPSHOT</version>
                         <configuration>
                             <mainClass>com.github.nicholascowan.twelvedata.example.Example</mainClass>
                             <cleanupDaemonThreads>false</cleanupDaemonThreads>
@@ -343,7 +343,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.0.14</version>
+                        <version>1.0.15-SNAPSHOT</version>
                         <configuration>
                             <useAgent>true</useAgent>
                             <pinentryMode>loopback</pinentryMode>
@@ -362,7 +362,7 @@
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.0.14</version>
+                        <version>1.0.15-SNAPSHOT</version>
                         <extensions>true</extensions>
                         <configuration>
                             <serverId>ossrh</serverId>
@@ -400,7 +400,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-deploy-plugin</artifactId>
-                        <version>1.0.14</version>
+                        <version>1.0.15-SNAPSHOT</version>
                         <configuration>
                             <skip>false</skip>
                         </configuration>
@@ -417,7 +417,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>flatten-maven-plugin</artifactId>
-                        <version>1.0.14</version>
+                        <version>1.0.15-SNAPSHOT</version>
                         <configuration>
                             <updatePomFile>true</updatePomFile>
                             <flattenMode>oss</flattenMode>
