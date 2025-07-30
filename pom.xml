@@ -7,7 +7,7 @@
 
     <groupId>com.github.nicholascowan.twelvedata</groupId>
     <artifactId>twelvedata-java-client</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>TwelveData Java Client</name>
