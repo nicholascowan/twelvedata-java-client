@@ -59,6 +59,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Prepare next SNAPSHOT version
+      id: next-version
       run: |
         VERSION=${{ steps.version.outputs.version }}
         # Parse version components
@@ -69,6 +70,7 @@ jobs:
         # Increment patch version for next SNAPSHOT
         NEXT_PATCH=$((PATCH + 1))
         NEXT_VERSION="$MAJOR.$MINOR.$NEXT_PATCH-SNAPSHOT"
+        echo "next_version=$NEXT_VERSION" >> $GITHUB_OUTPUT
         echo "Next SNAPSHOT version: $NEXT_VERSION"
         sed -i "s/<version>.*<\/version>/<version>$NEXT_VERSION<\/version>/" pom.xml
     - name: Commit and push next SNAPSHOT version
@@ -76,5 +78,5 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add pom.xml
-        git commit -m "Bump to $NEXT_VERSION for next development cycle (was $VERSION)"
+        git commit -m "Bump to ${{ steps.next-version.outputs.next_version }} for next development cycle (was ${{ steps.version.outputs.version }})"
         git push origin main 
