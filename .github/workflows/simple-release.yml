@@ -1,0 +1,80 @@
+name: Simple Release Management
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release'
+        required: false
+        default: ''
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Extract version from tag
+      id: version
+      run: |
+        if [ "${{ github.event_name }}" == "release" ]; then
+          VERSION=${GITHUB_REF#refs/tags/v}
+        else
+          VERSION="${{ github.event.inputs.version }}"
+        fi
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "Extracted version: $VERSION"
+    - name: Update version in pom.xml
+      run: |
+        VERSION=${{ steps.version.outputs.version }}
+        echo "Updating version to: $VERSION"
+        sed -i "s/<version>.*<\/version>/<version>$VERSION<\/version>/" pom.xml
+        echo "Updated pom.xml version:"
+        grep -oP '<version>\K[^<]+' pom.xml | head -1
+    - name: Commit version change
+      run: |
+        VERSION=${{ steps.version.outputs.version }}
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add pom.xml
+        git commit -m "Release version $VERSION"
+        git tag -a "v$VERSION" -m "Release v$VERSION"
+        git push origin main
+        git push origin "v$VERSION"
+    - name: Create GitHub Release
+      if: github.event_name == 'workflow_dispatch'
+      run: |
+        VERSION="${{ github.event.inputs.version }}"
+        gh release create "v$VERSION" \
+          --title "Release v$VERSION" \
+          --notes "Release v$VERSION of TwelveData Java Client" \
+          --target main
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Prepare next SNAPSHOT version
+      run: |
+        VERSION=${{ steps.version.outputs.version }}
+        # Parse version components
+        IFS='.' read -ra VERSION_PARTS <<< "$VERSION"
+        MAJOR="${VERSION_PARTS[0]}"
+        MINOR="${VERSION_PARTS[1]}"
+        PATCH="${VERSION_PARTS[2]}"
+        # Increment patch version for next SNAPSHOT
+        NEXT_PATCH=$((PATCH + 1))
+        NEXT_VERSION="$MAJOR.$MINOR.$NEXT_PATCH-SNAPSHOT"
+        echo "Next SNAPSHOT version: $NEXT_VERSION"
+        sed -i "s/<version>.*<\/version>/<version>$NEXT_VERSION<\/version>/" pom.xml
+    - name: Commit and push next SNAPSHOT version
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add pom.xml
+        git commit -m "Bump to $NEXT_VERSION for next development cycle"
+        git push origin main 
