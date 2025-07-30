@@ -7,7 +7,7 @@
 
     <groupId>com.github.nicholascowan.twelvedata</groupId>
     <artifactId>twelvedata-java-client</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>TwelveData Java Client</name>
@@ -236,10 +236,15 @@
 
     <distributionManagement>
         <snapshotRepository>
-            <id>ossrh</id>
-            <name>OSS Sonatype Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <id>github</id>
+            <name>GitHub Packages Snapshots</name>
+            <url>https://maven.pkg.github.com/nicholascowan/twelvedata-java-client</url>
         </snapshotRepository>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/nicholascowan/twelvedata-java-client</url>
+        </repository>
     </distributionManagement>
 
     <developers>
@@ -341,6 +346,63 @@
                     <url>https://maven.pkg.github.com/nicholascowan/twelvedata-java-client</url>
                 </repository>
             </distributionManagement>
+        </profile>
+
+        <!-- Profile for SNAPSHOT builds -->
+        <profile>
+            <id>snapshot</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <maven.deploy.skip>false</maven.deploy.skip>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-deploy-plugin</artifactId>
+                        <version>3.1.1</version>
+                        <configuration>
+                            <skip>false</skip>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Profile for release builds (removes SNAPSHOT suffix) -->
+        <profile>
+            <id>release-build</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>flatten-maven-plugin</artifactId>
+                        <version>1.5.0</version>
+                        <configuration>
+                            <updatePomFile>true</updatePomFile>
+                            <flattenMode>oss</flattenMode>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>flatten</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>flatten</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>flatten.clean</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>clean</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 </project> 
