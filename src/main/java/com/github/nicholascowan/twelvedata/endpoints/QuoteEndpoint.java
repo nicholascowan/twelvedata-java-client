@@ -3,6 +3,7 @@ package com.github.nicholascowan.twelvedata.endpoints;
 import com.github.nicholascowan.twelvedata.TwelveDataContext;
 import com.github.nicholascowan.twelvedata.models.ModelUtils;
 import com.github.nicholascowan.twelvedata.models.QuoteResponse;
+import java.time.ZoneId;
 
 /** Endpoint for real-time quotes. */
 public class QuoteEndpoint extends Endpoint {
@@ -121,6 +122,17 @@ public class QuoteEndpoint extends Endpoint {
 
   public QuoteEndpoint timezone(String timezone) {
     addParam("timezone", timezone);
+    return this;
+  }
+
+  /**
+   * Sets the timezone using a ZoneId.
+   *
+   * @param zoneId the ZoneId for the timezone (e.g., ZoneId.of("America/New_York"))
+   * @return this QuoteEndpoint for method chaining
+   */
+  public QuoteEndpoint timezone(ZoneId zoneId) {
+    addParam("timezone", zoneId.getId());
     return this;
   }
 

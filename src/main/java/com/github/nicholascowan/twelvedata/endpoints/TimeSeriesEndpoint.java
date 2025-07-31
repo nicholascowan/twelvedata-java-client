@@ -3,6 +3,7 @@ package com.github.nicholascowan.twelvedata.endpoints;
 import com.github.nicholascowan.twelvedata.TwelveDataContext;
 import com.github.nicholascowan.twelvedata.models.ModelUtils;
 import com.github.nicholascowan.twelvedata.models.TimeSeriesResponse;
+import java.time.ZoneId;
 
 /** Endpoint for time series data (OHLC). */
 public class TimeSeriesEndpoint extends Endpoint {
@@ -143,6 +144,17 @@ public class TimeSeriesEndpoint extends Endpoint {
 
   public TimeSeriesEndpoint timezone(String timezone) {
     addParam("timezone", timezone);
+    return this;
+  }
+
+  /**
+   * Sets the timezone using a ZoneId.
+   *
+   * @param zoneId the ZoneId for the timezone (e.g., ZoneId.of("America/New_York"))
+   * @return this TimeSeriesEndpoint for method chaining
+   */
+  public TimeSeriesEndpoint timezone(ZoneId zoneId) {
+    addParam("timezone", zoneId.getId());
     return this;
   }
 
