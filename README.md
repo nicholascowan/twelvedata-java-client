@@ -102,6 +102,7 @@ try {
     System.out.println("API error: " + e.getMessage());
     System.out.println("Error code: " + e.getErrorCode());
 }
+```
 
 For comprehensive error handling information, see [ERROR_HANDLING.md](ERROR_HANDLING.md).
 
