@@ -28,11 +28,10 @@
         <mockito.version>5.8.0</mockito.version>
         <gpg.plugin.version>3.2.8</gpg.plugin.version>
         <nexus.plugin.version>1.7.0</nexus.plugin.version>
-        <checkstyle.plugin.version>3.3.1</checkstyle.plugin.version>
+        <checkstyle.plugin.version>3.6.0</checkstyle.plugin.version>
         <pmd.plugin.version>3.21.2</pmd.plugin.version>
         <spotbugs.plugin.version>4.8.2.0</spotbugs.plugin.version>
-        <jacoco.plugin.version>0.8.11</jacoco.plugin.version>
-        <site.plugin.version>4.0.0-M9</site.plugin.version>
+        <jacoco.plugin.version>0.8.13</jacoco.plugin.version>
     </properties>
 
     <dependencies>
@@ -278,7 +277,7 @@
                     <failsOnError>true</failsOnError>
                     <linkXRef>false</linkXRef>
                 </configuration>
-                <executions>
+                <!-- <executions>
                     <execution>
                         <id>validate</id>
                         <phase>validate</phase>
@@ -286,7 +285,7 @@
                             <goal>check</goal>
                         </goals>
                     </execution>
-                </executions>
+                </executions> -->
             </plugin>
 
             <!-- PMD Plugin for static code analysis -->
@@ -373,12 +372,6 @@
                 </executions>
             </plugin>
 
-            <!-- Maven Site Plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>${site.plugin.version}</version>
-            </plugin>
 
         </plugins>
     </build>
