@@ -1,7 +1,6 @@
 package com.github.nicholascowan.twelvedata.example;
 
 import com.github.nicholascowan.twelvedata.TwelveDataClient;
-import com.github.nicholascowan.twelvedata.config.TwelveDataConfig;
 import java.time.ZoneId;
 
 /**
@@ -13,10 +12,14 @@ import java.time.ZoneId;
 public class ZoneIdExample {
 
   public static void main(String[] args) {
-    // Create client with demo API key
-    TwelveDataConfig config = new TwelveDataConfig();
-    config.getApi().setKey("demo"); // Free tier demo key
-    TwelveDataClient client = new TwelveDataClient(config);
+    // Get API key from command line arguments or use demo
+    String apiKey = args.length > 0 ? args[0] : "demo";
+    System.out.println(
+        "Using API key: "
+            + (apiKey.equals("demo") ? "demo (free tier)" : apiKey.substring(0, 4) + "..."));
+
+    // Initialize client with API key
+    TwelveDataClient client = new TwelveDataClient(apiKey);
 
     System.out.println("=== ZoneId Timezone Example ===\n");
 
