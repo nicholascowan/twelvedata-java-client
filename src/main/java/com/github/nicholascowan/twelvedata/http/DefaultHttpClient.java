@@ -141,7 +141,7 @@ public class DefaultHttpClient implements HttpClient {
     String contentType = response.header("Content-Type");
     String isBatch = response.header("Is_batch");
 
-    if ("true".equals(isBatch) || (contentType != null && contentType.contains("text/csv"))) {
+    if ("true".equals(isBatch) || contentType != null && contentType.contains("text/csv")) {
       if (!response.isSuccessful()) {
         throw createException(response.code(), responseBody);
       }
@@ -188,8 +188,6 @@ public class DefaultHttpClient implements HttpClient {
       return new ParameterTooLongException(message);
     } else if (errorCode == 429) {
       return new RateLimitException(message);
-    } else if (errorCode == 500) {
-      return new InternalServerException(message, errorCode);
     } else if (errorCode == 502) {
       return new ServerErrorException(message, errorCode);
     } else if (errorCode >= 500) {

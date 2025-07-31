@@ -300,7 +300,6 @@
                 <version>${pmd.plugin.version}</version>
                 <configuration>
                     <linkXRef>false</linkXRef>
-                    <sourceEncoding>UTF-8</sourceEncoding>
                     <minimumTokens>150</minimumTokens>
                     <targetJdk>17</targetJdk>
                 </configuration>
