@@ -18,33 +18,7 @@ cd twelvedata-java-client
 mvn clean install
 ```
 
-### Running the Example
 
-The project includes an exec-maven-plugin for easy execution of the example code.
-
-#### Run with Demo API Key (Free Tier)
-```bash
-mvn exec:java
-```
-
-#### Run with Custom API Key
-```bash
-mvn exec:java -Dexec.args="your-api-key-here"
-```
-
-#### Run with Profile (Alternative Method)
-```bash
-mvn exec:java -P run-with-api-key -Dapi.key="your-api-key-here"
-```
-
-### Example Output
-
-The example demonstrates:
-1. Getting time series data (OHLC) for AAPL
-2. Retrieving data in CSV format
-3. Generating API URLs
-4. Getting real-time quotes
-5. Getting current prices
 
 ## Usage
 
@@ -77,9 +51,9 @@ QuoteResponse quoteData = client.quote("AAPL").asObject();
 PriceResponse priceData = client.price("AAPL").asObject();
 
 // Access model properties
-System.out.println("Symbol: " + quoteData.getSymbol());
-System.out.println("Current Price: " + quoteData.getClose());
-System.out.println("Market Open: " + quoteData.getIsMarketOpen());
+logger.info("Symbol: {}", quoteData.getSymbol());
+logger.info("Current Price: {}", quoteData.getClose());
+logger.info("Market Open: {}", quoteData.getIsMarketOpen());
 
 // Get numeric values
 Double currentPrice = quoteData.getCloseAsDouble();
@@ -87,20 +61,20 @@ Long volume = quoteData.getVolumeAsLong();
 
 // Access time series data
 TimeSeriesValue latestValue = timeSeriesData.getLatestValue();
-System.out.println("Latest Close: " + latestValue.getCloseAsDouble());
+logger.info("Latest Close: {}", latestValue.getCloseAsDouble());
 
 // Error handling
 try {
     QuoteResponse quoteData = client.quote("INVALID_SYMBOL").asObject();
 } catch (RateLimitException e) {
-    System.out.println("Rate limit exceeded: " + e.getMessage());
-    System.out.println("Error code: " + e.getErrorCode());
+    logger.error("Rate limit exceeded: {}", e.getMessage());
+    logger.error("Error code: {}", e.getErrorCode());
 } catch (ServerErrorException e) {
-    System.out.println("Server error: " + e.getMessage());
-    System.out.println("Error code: " + e.getErrorCode());
+    logger.error("Server error: {}", e.getMessage());
+    logger.error("Error code: {}", e.getErrorCode());
 } catch (TwelveDataException e) {
-    System.out.println("API error: " + e.getMessage());
-    System.out.println("Error code: " + e.getErrorCode());
+    logger.error("API error: {}", e.getMessage());
+    logger.error("Error code: {}", e.getErrorCode());
 }
 ```
 

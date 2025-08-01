@@ -243,27 +243,7 @@
                 </executions>
             </plugin>
 
-            <!-- Maven Exec Plugin for easy execution -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>com.github.nicholascowan.twelvedata.example.Example</mainClass>
-                    <cleanupDaemonThreads>false</cleanupDaemonThreads>
-                    <arguments>
-                        <argument>demo</argument>
-                    </arguments>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>run-example</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>java</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+
 
             <!-- Checkstyle Plugin for code style checking -->
             <plugin>
@@ -412,24 +392,7 @@
     </scm>
 
     <profiles>
-        <profile>
-            <id>run-with-api-key</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <configuration>
-                            <mainClass>com.github.nicholascowan.twelvedata.example.Example</mainClass>
-                            <cleanupDaemonThreads>false</cleanupDaemonThreads>
-                            <arguments>
-                                <argument>${api.key}</argument>
-                            </arguments>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
+
 
         <!-- Profile for publishing to Maven Central -->
         <profile>

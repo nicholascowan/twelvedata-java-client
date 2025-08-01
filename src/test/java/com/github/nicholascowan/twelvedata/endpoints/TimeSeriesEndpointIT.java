@@ -8,6 +8,8 @@ import com.github.nicholascowan.twelvedata.endpoints.TimeSeriesEndpoint;
 import com.github.nicholascowan.twelvedata.models.TimeSeriesResponse;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Real API integration tests for TimeSeries endpoint. These tests make actual HTTP requests to the
@@ -15,6 +17,7 @@ import org.junit.jupiter.api.Test;
  */
 @Tag("IntegrationTest")
 public class TimeSeriesEndpointIT {
+  private static final Logger logger = LoggerFactory.getLogger(TimeSeriesEndpointIT.class);
   @Test
   void testTimeSeriesApi() throws Exception {
     // Create client with demo API key
@@ -27,24 +30,23 @@ public class TimeSeriesEndpointIT {
     assertNotNull(response.getMeta());
     assertNotNull(response.getValues());
     assertTrue(response.getValues().size() > 0);
-    // Print object results
-    System.out.println("✅ Real TimeSeries API test successful!");
-    System.out.println("Symbol: " + response.getMeta().getSymbol());
-    System.out.println("Interval: " + response.getMeta().getInterval());
-    System.out.println("Exchange: " + response.getMeta().getExchange());
-    System.out.println("Currency: " + response.getMeta().getCurrency());
-    System.out.println("Data Points: " + response.getValues().size());
-    System.out.println("Latest Close: " + response.getValues().get(0).getClose());
-    System.out.println("Latest Volume: " + response.getValues().get(0).getVolume());
+    // Log object results
+    logger.info("✅ Real TimeSeries API test successful!");
+    logger.info("Symbol: {}", response.getMeta().getSymbol());
+    logger.info("Interval: {}", response.getMeta().getInterval());
+    logger.info("Exchange: {}", response.getMeta().getExchange());
+    logger.info("Currency: {}", response.getMeta().getCurrency());
+    logger.info("Data Points: {}", response.getValues().size());
+    logger.info("Latest Close: {}", response.getValues().get(0).getClose());
+    logger.info("Latest Volume: {}", response.getValues().get(0).getVolume());
     // Execute request with JSON response
     JsonNode jsonResponse = endpoint.symbol("AAPL").interval("1day").asJson();
     // Verify JSON response
     assertNotNull(jsonResponse);
     assertTrue(jsonResponse.has("meta"));
     assertTrue(jsonResponse.has("values"));
-    // Print JSON result
-    System.out.println("\n✅ Real TimeSeries API JSON test successful!");
-    System.out.println("JSON Response:");
-    System.out.println(jsonResponse.toPrettyString());
+    // Log JSON result
+    logger.info("✅ Real TimeSeries API JSON test successful!");
+    logger.info("JSON Response:\n{}", jsonResponse.toPrettyString());
   }
 }

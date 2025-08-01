@@ -30,8 +30,7 @@ twelvedata-java-client/
 │   │   │   │   └── DefaultHttpClient.java    # OkHttp implementation
 │   │   │   ├── TwelveDataClient.java         # Main client class
 │   │   │   ├── TwelveDataContext.java        # Client context
-│   │   │   └── example/
-│   │   │       └── Example.java              # Usage examples
+
 │   │   └── resources/
 │   │       └── application.properties        # Configuration file
 │   └── test/
@@ -152,46 +151,9 @@ mvn test
 mvn clean install
 ```
 
-## Comparison with Python Client
 
-### Implemented Features
-- ✅ Core time series functionality
-- ✅ Quote and price endpoints
-- ✅ Error handling
-- ✅ Configuration support
-- ✅ Unit tests
-- ✅ Fluent builder API
-- ✅ JSON and CSV output formats
 
-### Planned Features (Future)
-- 🔄 Technical indicators (100+ indicators)
-- 🔄 Fundamentals data (earnings, dividends, etc.)
-- 🔄 WebSocket support
-- 🔄 Chart generation
-- 🔄 Batch requests optimization
-- 🔄 More endpoint types
 
-## Architecture Decisions
-
-### 1. Maven vs Gradle
-- **Choice**: Maven
-- **Reason**: More widely adopted in enterprise Java development
-
-### 2. Java 17
-- **Choice**: JDK 17 (LTS)
-- **Reason**: Latest LTS version with modern features
-
-### 3. OkHttp vs Apache HttpClient
-- **Choice**: OkHttp
-- **Reason**: Better performance, modern API, excellent testing support
-
-### 4. Spring Boot Integration
-- **Choice**: Spring Boot configuration
-- **Reason**: Familiar to Java developers, excellent configuration management
-
-### 5. Builder Pattern
-- **Choice**: Fluent builder API
-- **Reason**: Matches Python client's chaining approach, improves readability
 
 ## Testing Strategy
 
@@ -204,30 +166,7 @@ mvn clean install
 - **TwelveDataClientTest**: Client creation and endpoint access
 - **DefaultHttpClientTest**: HTTP client functionality and error handling
 
-## Future Enhancements
 
-### Phase 1: Technical Indicators
-- Implement all 100+ technical indicators
-- Support indicator chaining (like Python client)
-- Add indicator-specific configuration
-
-### Phase 2: Fundamentals Data
-- Earnings data
-- Dividends and splits
-- Company profiles
-- Financial statements
-
-### Phase 3: Advanced Features
-- WebSocket real-time data
-- Chart generation
-- Batch request optimization
-- Caching support
-
-### Phase 4: Enterprise Features
-- Connection pooling
-- Rate limiting
-- Retry mechanisms
-- Metrics and monitoring
 
 ## Conclusion
 

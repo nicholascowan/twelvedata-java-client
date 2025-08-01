@@ -8,6 +8,8 @@ import com.github.nicholascowan.twelvedata.endpoints.QuoteEndpoint;
 import com.github.nicholascowan.twelvedata.models.QuoteResponse;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Real API integration tests for Quote endpoint. These tests make actual HTTP requests to the
@@ -15,6 +17,7 @@ import org.junit.jupiter.api.Test;
  */
 @Tag("IntegrationTest")
 public class QuoteEndpointIT {
+  private static final Logger logger = LoggerFactory.getLogger(QuoteEndpointIT.class);
   @Test
   void testQuoteApi() throws Exception {
     // Create client with demo API key
@@ -29,19 +32,17 @@ public class QuoteEndpointIT {
     assertNotNull(response.getExchange());
     assertNotNull(response.getCurrency());
     assertNotNull(response.getClose());
-    // Print object results
-    System.out.println("✅ Real Quote API test successful!");
-    System.out.println("Symbol: " + response.getSymbol());
-    System.out.println("Name: " + response.getName());
-    System.out.println("Exchange: " + response.getExchange());
-    System.out.println("Currency: " + response.getCurrency());
-    System.out.println("Close Price: " + response.getClose());
-    System.out.println("Volume: " + response.getVolume());
-    System.out.println(
-        "52-Week Range: "
-            + response.getFiftyTwoWeek().getLow()
-            + " - "
-            + response.getFiftyTwoWeek().getHigh());
+    // Log object results
+    logger.info("✅ Real Quote API test successful!");
+    logger.info("Symbol: {}", response.getSymbol());
+    logger.info("Name: {}", response.getName());
+    logger.info("Exchange: {}", response.getExchange());
+    logger.info("Currency: {}", response.getCurrency());
+    logger.info("Close Price: {}", response.getClose());
+    logger.info("Volume: {}", response.getVolume());
+    logger.info("52-Week Range: {} - {}", 
+        response.getFiftyTwoWeek().getLow(), 
+        response.getFiftyTwoWeek().getHigh());
     // Execute request with JSON response
     JsonNode jsonResponse = endpoint.symbol("AAPL").asJson();
     // Verify JSON response
@@ -49,9 +50,8 @@ public class QuoteEndpointIT {
     assertTrue(jsonResponse.has("symbol"));
     assertTrue(jsonResponse.has("name"));
     assertTrue(jsonResponse.has("exchange"));
-    // Print JSON result
-    System.out.println("\n✅ Real Quote API JSON test successful!");
-    System.out.println("JSON Response:");
-    System.out.println(jsonResponse.toPrettyString());
+    // Log JSON result
+    logger.info("✅ Real Quote API JSON test successful!");
+    logger.info("JSON Response:\n{}", jsonResponse.toPrettyString());
   }
 }

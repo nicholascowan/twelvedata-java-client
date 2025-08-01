@@ -8,6 +8,8 @@ import com.github.nicholascowan.twelvedata.endpoints.PriceEndpoint;
 import com.github.nicholascowan.twelvedata.models.PriceResponse;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Real API integration tests for Price endpoint. These tests make actual HTTP requests to the
@@ -15,6 +17,7 @@ import org.junit.jupiter.api.Test;
  */
 @Tag("IntegrationTest")
 public class PriceEndpointIT {
+  private static final Logger logger = LoggerFactory.getLogger(PriceEndpointIT.class);
   @Test
   void testPriceApi() throws Exception {
     // Create client with demo API key
@@ -25,19 +28,18 @@ public class PriceEndpointIT {
     // Verify object response
     assertNotNull(response);
     assertNotNull(response.getPrice());
-    // Print object results
-    System.out.println("✅ Real Price API test successful!");
-    System.out.println("Symbol: AAPL");
-    System.out.println("Price: " + response.getPrice());
-    System.out.println("Price as Double: " + response.getPriceAsDouble());
+    // Log object results
+    logger.info("✅ Real Price API test successful!");
+    logger.info("Symbol: AAPL");
+    logger.info("Price: {}", response.getPrice());
+    logger.info("Price as Double: {}", response.getPriceAsDouble());
     // Execute request with JSON response
     JsonNode jsonResponse = endpoint.symbol("AAPL").asJson();
     // Verify JSON response
     assertNotNull(jsonResponse);
     assertTrue(jsonResponse.has("price"));
-    // Print JSON result
-    System.out.println("\n✅ Real Price API JSON test successful!");
-    System.out.println("JSON Response:");
-    System.out.println(jsonResponse.toPrettyString());
+    // Log JSON result
+    logger.info("✅ Real Price API JSON test successful!");
+    logger.info("JSON Response:\n{}", jsonResponse.toPrettyString());
   }
 }

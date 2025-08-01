@@ -97,13 +97,18 @@ To verify the installation, run this simple test:
 ```java
 import com.github.nicholascowan.twelvedata.TwelveDataClient;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class TestInstallation {
+    private static final Logger logger = LoggerFactory.getLogger(TestInstallation.class);
+    
     public static void main(String[] args) {
         try {
             TwelveDataClient client = new TwelveDataClient("your-api-key");
-            System.out.println("TwelveData Java Client installed successfully!");
+            logger.info("TwelveData Java Client installed successfully!");
         } catch (Exception e) {
-            System.err.println("Installation failed: " + e.getMessage());
+            logger.error("Installation failed: {}", e.getMessage());
         }
     }
 }
@@ -115,8 +120,8 @@ After installation, you can:
 
 1. [Get your API key](https://twelvedata.com)
 2. [Read the API Reference](api-reference.md)
-3. [Check out Examples](examples.md)
-4. [Learn about Error Handling](error-handling.md)
+
+
 
 ## Troubleshooting
 
