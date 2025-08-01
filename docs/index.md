@@ -70,10 +70,8 @@ PriceResponse priceData = client.price("AAPL").asObject();
 
 - [Installation Guide](installation.md)
 - [API Reference](api-reference.md)
-- [Error Handling](error-handling.md)
 - [Examples](examples.md)
 - [Configuration](configuration.md)
-- [Publishing](publishing.md)
 
 ## Support
 

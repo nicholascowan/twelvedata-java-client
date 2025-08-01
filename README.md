@@ -104,7 +104,7 @@ try {
 }
 ```
 
-For comprehensive error handling information, see [ERROR_HANDLING.md](ERROR_HANDLING.md).
+
 
 ## Building
 
@@ -192,7 +192,7 @@ The project includes GitHub Actions workflows for:
 
 ## Publishing
 
-This project is automatically published to both Maven Central and GitHub Package Registry when a new release is created. For detailed publishing instructions, see [PUBLISHING.md](PUBLISHING.md).
+This project is automatically published to both Maven Central and GitHub Package Registry when a new release is created.
 
 ## Version Management
 
@@ -207,7 +207,7 @@ The easiest way to bump versions is using the GitHub Actions workflow:
 3. Click **"Run workflow"**
 4. Choose version bump type: `patch`, `minor`, or `major`
 
-For detailed version management instructions, see [VERSION_MANAGEMENT.md](VERSION_MANAGEMENT.md).
+
 
 ## License
 

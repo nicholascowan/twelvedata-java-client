@@ -1,4 +1,4 @@
-package com.github.nicholascowan.twelvedata.endpoints.mock;
+package com.github.nicholascowan.twelvedata.endpoints;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,12 +13,14 @@ import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.SocketPolicy;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
  * Simple exception testing for all endpoints. Since all endpoints throw the same exceptions, we
  * test using PriceEndpoint as a representative example.
  */
+@Tag("UnitTest")
 class EndpointExceptionTest {
   private MockWebServer mockWebServer;
   private PriceEndpoint endpoint;
