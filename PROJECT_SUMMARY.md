@@ -17,9 +17,9 @@ twelvedata-java-client/
 │   │   │   │   └── TwelveDataConfig.java     # Configuration properties
 │   │   │   ├── endpoints/
 │   │   │   │   ├── Endpoint.java             # Base endpoint class
-│   │   │   │   ├── TimeSeriesEndpoint.java   # Time series data
-│   │   │   │   ├── QuoteEndpoint.java        # Real-time quotes
-│   │   │   │   └── PriceEndpoint.java        # Real-time prices
+│   │   │   │   ├── TimeSeries.java           # Time series data
+│   │   │   │   ├── Quote.java                # Real-time quotes
+│   │   │   │   └── Price.java                # Real-time prices
 │   │   │   ├── exceptions/
 │   │   │   │   ├── TwelveDataException.java  # Base exception
 │   │   │   │   ├── BadRequestException.java  # 400 errors
@@ -58,9 +58,9 @@ twelvedata-java-client/
   - Timeout configuration
 
 ### 3. API Endpoints
-- **TimeSeriesEndpoint**: OHLC time series data with fluent builder API
-- **QuoteEndpoint**: Real-time quote data
-- **PriceEndpoint**: Real-time price data
+- **TimeSeries**: OHLC time series data with fluent builder API
+- **Quote**: Real-time quote data
+- **Price**: Real-time price data
 - **Base Endpoint Class**: Common functionality for all endpoints
 
 ### 4. Error Handling
@@ -101,7 +101,7 @@ twelvedata-java-client/
 TwelveDataClient client = new TwelveDataClient("YOUR_API_KEY");
 
 // Get time series data
-TimeSeriesEndpoint ts = client.timeSeries("AAPL", "1min")
+TimeSeries ts = client.timeSeries("AAPL", "1min")
     .outputsize(10)
     .timezone("America/New_York");
 

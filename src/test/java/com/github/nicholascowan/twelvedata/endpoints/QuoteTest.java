@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.github.nicholascowan.twelvedata.TestUtils;
 import com.github.nicholascowan.twelvedata.TwelveDataContext;
-import com.github.nicholascowan.twelvedata.endpoints.QuoteEndpoint;
+import com.github.nicholascowan.twelvedata.endpoints.Quote;
 import com.github.nicholascowan.twelvedata.http.DefaultHttpClient;
 import com.github.nicholascowan.twelvedata.models.QuoteResponse;
 import java.util.HashMap;
@@ -21,9 +21,9 @@ import org.junit.jupiter.api.Test;
  * hitting the actual API.
  */
 @Tag("UnitTest")
-class QuoteEndpointTest {
+class QuoteTest {
   private MockWebServer mockWebServer;
-  private QuoteEndpoint endpoint;
+  private Quote endpoint;
 
   @BeforeEach
   void setUp() throws Exception {
@@ -35,7 +35,7 @@ class QuoteEndpointTest {
     DefaultHttpClient httpClient = new DefaultHttpClient(baseUrl, 30000);
     TwelveDataContext context =
         new TwelveDataContext("test-api-key", baseUrl, httpClient, defaults);
-    endpoint = new QuoteEndpoint(context);
+    endpoint = new Quote(context);
   }
 
   @AfterEach
@@ -44,7 +44,7 @@ class QuoteEndpointTest {
   }
 
   @Test
-  void testQuoteEndpointCreation() {
+  void testQuoteCreation() {
     assertNotNull(endpoint);
     assertFalse(endpoint.isPrice());
     assertFalse(endpoint.isIndicator());

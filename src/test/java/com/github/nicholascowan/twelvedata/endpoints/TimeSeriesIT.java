@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.nicholascowan.twelvedata.TwelveDataClient;
-import com.github.nicholascowan.twelvedata.endpoints.TimeSeriesEndpoint;
+import com.github.nicholascowan.twelvedata.endpoints.TimeSeries;
 import com.github.nicholascowan.twelvedata.models.TimeSeriesResponse;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -16,13 +16,13 @@ import org.slf4j.LoggerFactory;
  * TwelveData API.
  */
 @Tag("IntegrationTest")
-public class TimeSeriesEndpointIT {
-  private static final Logger logger = LoggerFactory.getLogger(TimeSeriesEndpointIT.class);
+public class TimeSeriesIT {
+  private static final Logger logger = LoggerFactory.getLogger(TimeSeriesIT.class);
   @Test
   void testTimeSeriesApi() throws Exception {
     // Create client with demo API key
     TwelveDataClient client = new TwelveDataClient("demo");
-    TimeSeriesEndpoint endpoint = client.timeSeries();
+    TimeSeries endpoint = client.timeSeries();
     // Execute request with object response
     TimeSeriesResponse response = endpoint.symbol("AAPL").interval("1day").asObject();
     // Verify object response

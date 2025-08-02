@@ -3,9 +3,9 @@ package com.github.nicholascowan.twelvedata;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.github.nicholascowan.twelvedata.endpoints.PriceEndpoint;
-import com.github.nicholascowan.twelvedata.endpoints.QuoteEndpoint;
-import com.github.nicholascowan.twelvedata.endpoints.TimeSeriesEndpoint;
+import com.github.nicholascowan.twelvedata.endpoints.Price;
+import com.github.nicholascowan.twelvedata.endpoints.Quote;
+import com.github.nicholascowan.twelvedata.endpoints.TimeSeries;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ public class ApiResponseTest {
   @DisplayName("Time Series API response should contain expected properties")
   void testTimeSeriesResponseProperties() throws Exception {
     // Given
-    TimeSeriesEndpoint endpoint =
+    TimeSeries endpoint =
         client.timeSeries("AAPL", "1day").outputsize(5).timezone("America/New_York");
 
     // When
@@ -92,7 +92,7 @@ public class ApiResponseTest {
   @DisplayName("Quote API response should contain expected properties")
   void testQuoteResponseProperties() throws Exception {
     // Given
-    QuoteEndpoint endpoint = client.quote("AAPL");
+    Quote endpoint = client.quote("AAPL");
 
     // When
     JsonNode response = endpoint.asJson();
@@ -161,7 +161,7 @@ public class ApiResponseTest {
   @DisplayName("Price API response should contain expected properties")
   void testPriceResponseProperties() throws Exception {
     // Given
-    PriceEndpoint endpoint = client.price("AAPL");
+    Price endpoint = client.price("AAPL");
 
     // When
     JsonNode response = endpoint.asJson();
@@ -187,7 +187,7 @@ public class ApiResponseTest {
   @DisplayName("Time Series CSV response should contain expected format")
   void testTimeSeriesCsvResponse() throws Exception {
     // Given
-    TimeSeriesEndpoint endpoint =
+    TimeSeries endpoint =
         client.timeSeries("AAPL", "1day").outputsize(3).timezone("America/New_York");
 
     // When
@@ -238,7 +238,7 @@ public class ApiResponseTest {
   @DisplayName("Generated URL should contain expected parameters")
   void testGeneratedUrl() {
     // Given
-    TimeSeriesEndpoint endpoint =
+    TimeSeries endpoint =
         client.timeSeries("AAPL", "1day").outputsize(5).timezone("America/New_York");
 
     // When
@@ -272,7 +272,7 @@ public class ApiResponseTest {
 
     for (String interval : intervals) {
       // Given
-      TimeSeriesEndpoint endpoint = client.timeSeries("AAPL", interval).outputsize(1);
+      TimeSeries endpoint = client.timeSeries("AAPL", interval).outputsize(1);
 
       // When
       JsonNode response = endpoint.asJson();
@@ -298,7 +298,7 @@ public class ApiResponseTest {
     String symbol = "AAPL";
 
     // Test time series
-    TimeSeriesEndpoint tsEndpoint = client.timeSeries(symbol, "1day").outputsize(1);
+    TimeSeries tsEndpoint = client.timeSeries(symbol, "1day").outputsize(1);
     JsonNode tsResponse = tsEndpoint.asJson();
     assertNotNull(tsResponse, "Time series response should not be null for: " + symbol);
     assertTrue(tsResponse.has("status"), "Time series should have status for: " + symbol);
@@ -311,16 +311,16 @@ public class ApiResponseTest {
     }
 
     // Test quote
-    QuoteEndpoint quoteEndpoint = client.quote(symbol);
-    JsonNode quoteResponse = quoteEndpoint.asJson();
+    Quote quote = client.quote(symbol);
+    JsonNode quoteResponse = quote.asJson();
     assertNotNull(quoteResponse, "Quote response should not be null for: " + symbol);
     assertTrue(quoteResponse.has("symbol"), "Quote should have symbol for: " + symbol);
     assertEquals(
         symbol, quoteResponse.get("symbol").asText(), "Quote symbol should match for: " + symbol);
 
     // Test price
-    PriceEndpoint priceEndpoint = client.price(symbol);
-    JsonNode priceResponse = priceEndpoint.asJson();
+    Price price = client.price(symbol);
+    JsonNode priceResponse = price.asJson();
     assertNotNull(priceResponse, "Price response should not be null for: " + symbol);
     assertTrue(priceResponse.has("price"), "Price should have price field for: " + symbol);
     assertTrue(priceResponse.get("price").isTextual(), "Price should be textual for: " + symbol);

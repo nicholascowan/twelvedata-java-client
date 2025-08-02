@@ -3,7 +3,7 @@ package com.github.nicholascowan.twelvedata.endpoints;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.github.nicholascowan.twelvedata.TwelveDataContext;
-import com.github.nicholascowan.twelvedata.endpoints.PriceEndpoint;
+import com.github.nicholascowan.twelvedata.endpoints.Price;
 import com.github.nicholascowan.twelvedata.exceptions.*;
 import com.github.nicholascowan.twelvedata.http.DefaultHttpClient;
 import java.util.HashMap;
@@ -18,12 +18,12 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Simple exception testing for all endpoints. Since all endpoints throw the same exceptions, we
- * test using PriceEndpoint as a representative example.
+ * test using Price as a representative example.
  */
 @Tag("UnitTest")
-class EndpointExceptionTest {
+class ExceptionTest {
   private MockWebServer mockWebServer;
-  private PriceEndpoint endpoint;
+  private Price endpoint;
 
   @BeforeEach
   void setUp() throws Exception {
@@ -35,7 +35,7 @@ class EndpointExceptionTest {
     DefaultHttpClient httpClient = new DefaultHttpClient(baseUrl, 30000);
     TwelveDataContext context =
         new TwelveDataContext("test-api-key", baseUrl, httpClient, defaults);
-    endpoint = new PriceEndpoint(context);
+    endpoint = new Price(context);
   }
 
   @AfterEach

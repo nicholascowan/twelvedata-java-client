@@ -3,7 +3,7 @@ package com.github.nicholascowan.twelvedata.endpoints;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.github.nicholascowan.twelvedata.TwelveDataContext;
-import com.github.nicholascowan.twelvedata.endpoints.PriceEndpoint;
+import com.github.nicholascowan.twelvedata.endpoints.Price;
 import com.github.nicholascowan.twelvedata.http.DefaultHttpClient;
 import com.github.nicholascowan.twelvedata.models.PriceResponse;
 import java.util.HashMap;
@@ -15,13 +15,13 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
- * Unit tests for PriceEndpoint using MockWebServer. Note: Exception testing is handled by the
- * consolidated EndpointExceptionTest class.
+ * Unit tests for Price using MockWebServer. Note: Exception testing is handled by the
+ * consolidated ExceptionTest class.
  */
 @Tag("UnitTest")
-class PriceEndpointTest {
+class PriceTest {
   private MockWebServer mockWebServer;
-  private PriceEndpoint endpoint;
+  private Price endpoint;
 
   @BeforeEach
   void setUp() throws Exception {
@@ -31,7 +31,7 @@ class PriceEndpointTest {
     DefaultHttpClient httpClient = new DefaultHttpClient(baseUrl, 30000);
     TwelveDataContext context =
         new TwelveDataContext("test-api-key", baseUrl, httpClient, new HashMap<>());
-    endpoint = new PriceEndpoint(context);
+    endpoint = new Price(context);
   }
 
   @AfterEach
@@ -40,7 +40,7 @@ class PriceEndpointTest {
   }
 
   @Test
-  void testPriceEndpointCreation() {
+  void testPriceCreation() {
     assertNotNull(endpoint);
   }
 
@@ -340,5 +340,5 @@ class PriceEndpointTest {
     assertEquals(150.25, priceResponse.getPriceAsDouble());
     assertEquals(150.25f, priceResponse.getPriceAsFloat());
   }
-  // Note: Exception testing is now handled by the consolidated EndpointExceptionTest class
+  // Note: Exception testing is now handled by the consolidated ExceptionTest class
 }

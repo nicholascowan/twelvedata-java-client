@@ -1,9 +1,9 @@
 package com.github.nicholascowan.twelvedata;
 
 import com.github.nicholascowan.twelvedata.config.TwelveDataConfig;
-import com.github.nicholascowan.twelvedata.endpoints.PriceEndpoint;
-import com.github.nicholascowan.twelvedata.endpoints.QuoteEndpoint;
-import com.github.nicholascowan.twelvedata.endpoints.TimeSeriesEndpoint;
+import com.github.nicholascowan.twelvedata.endpoints.Price;
+import com.github.nicholascowan.twelvedata.endpoints.Quote;
+import com.github.nicholascowan.twelvedata.endpoints.TimeSeries;
 import com.github.nicholascowan.twelvedata.http.DefaultHttpClient;
 import com.github.nicholascowan.twelvedata.http.HttpClient;
 import java.util.HashMap;
@@ -29,7 +29,7 @@ import org.springframework.stereotype.Component;
  * TwelveDataClient client = new TwelveDataClient("your-api-key");
  *
  * // Get time series data
- * TimeSeriesEndpoint ts = client.timeSeries("AAPL", "1day")
+ * TimeSeries ts = client.timeSeries("AAPL", "1day")
  *     .outputsize(5)
  *     .timezone("America/New_York");
  * JsonNode data = ts.asJson();
@@ -41,9 +41,9 @@ import org.springframework.stereotype.Component;
  * JsonNode price = client.price("AAPL").asJson();
  * }</pre>
  *
- * @see TimeSeriesEndpoint
- * @see QuoteEndpoint
- * @see PriceEndpoint
+ * @see TimeSeries
+ * @see Quote
+ * @see Price
  * @see TwelveDataContext
  */
 @Component
@@ -109,10 +109,10 @@ public class TwelveDataClient {
   /**
    * Creates a time series endpoint for getting OHLC (Open, High, Low, Close) data.
    *
-   * @return a new TimeSeriesEndpoint instance
+   * @return a new TimeSeries instance
    */
-  public TimeSeriesEndpoint timeSeries() {
-    return new TimeSeriesEndpoint(context);
+  public TimeSeries timeSeries() {
+    return new TimeSeries(context);
   }
 
   /**
@@ -120,10 +120,10 @@ public class TwelveDataClient {
    *
    * @param symbol the stock symbol (e.g., "AAPL", "MSFT")
    * @param interval the time interval (e.g., "1min", "5min", "1day", "1week")
-   * @return a new TimeSeriesEndpoint instance configured with the symbol and interval
+   * @return a new TimeSeries instance configured with the symbol and interval
    */
-  public TimeSeriesEndpoint timeSeries(String symbol, String interval) {
-    return new TimeSeriesEndpoint(context, symbol, interval);
+  public TimeSeries timeSeries(String symbol, String interval) {
+    return new TimeSeries(context, symbol, interval);
   }
 
   /**
@@ -145,9 +145,9 @@ public class TwelveDataClient {
    * @param micCode the Market Identifier Code
    * @param previousClose the previous close price
    * @param adjust whether to adjust for splits/dividends ("true" or "false")
-   * @return a new TimeSeriesEndpoint instance with all parameters configured
+   * @return a new TimeSeries instance with all parameters configured
    */
-  public TimeSeriesEndpoint timeSeries(
+  public TimeSeries timeSeries(
       String symbol,
       String interval,
       String exchange,
@@ -164,7 +164,7 @@ public class TwelveDataClient {
       String micCode,
       String previousClose,
       String adjust) {
-    return new TimeSeriesEndpoint(
+    return new TimeSeries(
         context,
         symbol,
         interval,
@@ -187,39 +187,39 @@ public class TwelveDataClient {
   /**
    * Creates a quote endpoint for getting real-time quotes.
    *
-   * @return a new QuoteEndpoint instance
+   * @return a new Quote instance
    */
-  public QuoteEndpoint quote() {
-    return new QuoteEndpoint(context);
+  public Quote quote() {
+    return new Quote(context);
   }
 
   /**
    * Creates a quote endpoint with symbol.
    *
    * @param symbol the stock symbol (e.g., "AAPL", "MSFT")
-   * @return a new QuoteEndpoint instance configured with the symbol
+   * @return a new Quote instance configured with the symbol
    */
-  public QuoteEndpoint quote(String symbol) {
-    return new QuoteEndpoint(context, symbol);
+  public Quote quote(String symbol) {
+    return new Quote(context, symbol);
   }
 
   /**
    * Creates a price endpoint for getting real-time prices.
    *
-   * @return a new PriceEndpoint instance
+   * @return a new Price instance
    */
-  public PriceEndpoint price() {
-    return new PriceEndpoint(context);
+  public Price price() {
+    return new Price(context);
   }
 
   /**
    * Creates a price endpoint with symbol.
    *
    * @param symbol the stock symbol (e.g., "AAPL", "MSFT")
-   * @return a new PriceEndpoint instance configured with the symbol
+   * @return a new Price instance configured with the symbol
    */
-  public PriceEndpoint price(String symbol) {
-    return new PriceEndpoint(context, symbol);
+  public Price price(String symbol) {
+    return new Price(context, symbol);
   }
 
   /**

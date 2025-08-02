@@ -5,7 +5,7 @@ import static org.mockito.Mockito.*;
 
 import com.github.nicholascowan.twelvedata.TestUtils;
 import com.github.nicholascowan.twelvedata.TwelveDataContext;
-import com.github.nicholascowan.twelvedata.endpoints.TimeSeriesEndpoint;
+import com.github.nicholascowan.twelvedata.endpoints.TimeSeries;
 import com.github.nicholascowan.twelvedata.http.DefaultHttpClient;
 import com.github.nicholascowan.twelvedata.models.TimeSeriesResponse;
 import java.util.HashMap;
@@ -22,9 +22,9 @@ import org.junit.jupiter.api.Test;
  * avoid hitting the actual API.
  */
 @Tag("UnitTest")
-class TimeSeriesEndpointTest {
+class TimeSeriesTest {
   private MockWebServer mockWebServer;
-  private TimeSeriesEndpoint endpoint;
+  private TimeSeries endpoint;
 
   @BeforeEach
   void setUp() throws Exception {
@@ -36,7 +36,7 @@ class TimeSeriesEndpointTest {
     DefaultHttpClient httpClient = new DefaultHttpClient(baseUrl, 30000);
     TwelveDataContext context =
         new TwelveDataContext("test-api-key", baseUrl, httpClient, defaults);
-    endpoint = new TimeSeriesEndpoint(context);
+    endpoint = new TimeSeries(context);
   }
 
   @AfterEach
@@ -45,7 +45,7 @@ class TimeSeriesEndpointTest {
   }
 
   @Test
-  void testTimeSeriesEndpointCreation() {
+  void testTimeSeriesCreation() {
     assertNotNull(endpoint);
     assertTrue(endpoint.isPrice());
     assertFalse(endpoint.isIndicator());

@@ -31,7 +31,7 @@ import com.github.nicholascowan.twelvedata.exceptions.*;
 TwelveDataClient client = new TwelveDataClient("your-api-key");
 
 // Get time series data
-TimeSeriesEndpoint ts = client.timeSeries("AAPL", "1min")
+TimeSeries ts = client.timeSeries("AAPL", "1min")
     .outputsize(5)
     .timezone("America/New_York");
 

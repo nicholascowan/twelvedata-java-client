@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.nicholascowan.twelvedata.TwelveDataClient;
-import com.github.nicholascowan.twelvedata.endpoints.QuoteEndpoint;
+import com.github.nicholascowan.twelvedata.endpoints.Quote;
 import com.github.nicholascowan.twelvedata.models.QuoteResponse;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -16,13 +16,13 @@ import org.slf4j.LoggerFactory;
  * TwelveData API.
  */
 @Tag("IntegrationTest")
-public class QuoteEndpointIT {
-  private static final Logger logger = LoggerFactory.getLogger(QuoteEndpointIT.class);
+public class QuoteIT {
+  private static final Logger logger = LoggerFactory.getLogger(QuoteIT.class);
   @Test
   void testQuoteApi() throws Exception {
     // Create client with demo API key
     TwelveDataClient client = new TwelveDataClient("demo");
-    QuoteEndpoint endpoint = client.quote();
+    Quote endpoint = client.quote();
     // Execute request with object response
     QuoteResponse response = endpoint.symbol("AAPL").asObject();
     // Verify object response

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.nicholascowan.twelvedata.TwelveDataClient;
-import com.github.nicholascowan.twelvedata.endpoints.PriceEndpoint;
+import com.github.nicholascowan.twelvedata.endpoints.Price;
 import com.github.nicholascowan.twelvedata.models.PriceResponse;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -16,13 +16,13 @@ import org.slf4j.LoggerFactory;
  * TwelveData API.
  */
 @Tag("IntegrationTest")
-public class PriceEndpointIT {
-  private static final Logger logger = LoggerFactory.getLogger(PriceEndpointIT.class);
+public class PriceIT {
+  private static final Logger logger = LoggerFactory.getLogger(PriceIT.class);
   @Test
   void testPriceApi() throws Exception {
     // Create client with demo API key
     TwelveDataClient client = new TwelveDataClient("demo");
-    PriceEndpoint endpoint = client.price();
+    Price endpoint = client.price();
     // Execute request with object response
     PriceResponse response = endpoint.symbol("AAPL").asObject();
     // Verify object response
