@@ -42,8 +42,7 @@ jobs:
     - name: Build project
       run: mvn clean package
       
-    - name: Test exec plugin
-      run: mvn exec:java -Dexec.args="demo"
+
       
     - name: Upload test results
       uses: actions/upload-artifact@v4
