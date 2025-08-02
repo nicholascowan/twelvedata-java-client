@@ -1,5 +1,11 @@
 # TwelveData Java Client
 
+[![CI](https://github.com/nicholascowan/twelvedata-java-client/workflows/CI/badge.svg)](https://github.com/nicholascowan/twelvedata-java-client/actions/workflows/ci.yml)
+[![Tests](https://img.shields.io/badge/tests-passing-brightgreen)](https://github.com/nicholascowan/twelvedata-java-client/actions/workflows/ci.yml)
+[![Java](https://img.shields.io/badge/java-17+-blue.svg)](https://openjdk.java.net/)
+[![Maven](https://img.shields.io/badge/maven-3.6+-orange.svg)](https://maven.apache.org/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE.txt)
+
 A Java client library for the TwelveData API, providing easy access to financial market data. This was heavily inspired by other clients.
 
 ## Quick Start
