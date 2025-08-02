@@ -67,8 +67,8 @@ public class TimeSeries extends Endpoint {
   public TimeSeries(TwelveDataContext context, String symbol, String interval) {
     super(context);
     this.isPrice = true;
-    addParam("symbol", symbol);
-    addParam("interval", interval);
+    addParam(ApiParameters.SYMBOL, symbol);
+    addParam(ApiParameters.INTERVAL, interval);
   }
 
   /**
@@ -112,22 +112,22 @@ public class TimeSeries extends Endpoint {
       String adjust) {
     super(context);
     this.isPrice = true;
-    addParam("symbol", symbol);
-    addParam("interval", interval);
-    addParam("exchange", exchange);
-    addParam("country", country);
-    addParam("type", type);
-    addParam("outputsize", outputsize);
-    addParam("start_date", startDate);
-    addParam("end_date", endDate);
-    addParam("dp", dp);
-    addParam("timezone", timezone);
-    addParam("order", order);
-    addParam("prepost", prepost);
-    addParam("date", date);
-    addParam("mic_code", micCode);
-    addParam("previous_close", previousClose);
-    addParam("adjust", adjust);
+    addParam(ApiParameters.SYMBOL, symbol);
+    addParam(ApiParameters.INTERVAL, interval);
+    addParam(ApiParameters.EXCHANGE, exchange);
+    addParam(ApiParameters.COUNTRY, country);
+    addParam(ApiParameters.TYPE, type);
+    addParam(ApiParameters.OUTPUT_SIZE, outputsize);
+    addParam(ApiParameters.START_DATE, startDate);
+    addParam(ApiParameters.END_DATE, endDate);
+    addParam(ApiParameters.DP, dp);
+    addParam(ApiParameters.TIMEZONE, timezone);
+    addParam(ApiParameters.ORDER, order);
+    addParam(ApiParameters.PREPOST, prepost);
+    addParam(ApiParameters.DATE, date);
+    addParam(ApiParameters.MIC_CODE, micCode);
+    addParam(ApiParameters.PREVIOUS_CLOSE, previousClose);
+    addParam(ApiParameters.ADJUST, adjust);
   }
 
   @Override
@@ -142,7 +142,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries symbol(String symbol) {
-    addParam("symbol", symbol);
+    addParam(ApiParameters.SYMBOL, symbol);
     return this;
   }
 
@@ -153,7 +153,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries interval(String interval) {
-    addParam("interval", interval);
+    addParam(ApiParameters.INTERVAL, interval);
     return this;
   }
 
@@ -164,7 +164,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries exchange(String exchange) {
-    addParam("exchange", exchange);
+    addParam(ApiParameters.EXCHANGE, exchange);
     return this;
   }
 
@@ -175,7 +175,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries country(String country) {
-    addParam("country", country);
+    addParam(ApiParameters.COUNTRY, country);
     return this;
   }
 
@@ -186,7 +186,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries type(String type) {
-    addParam("type", type);
+    addParam(ApiParameters.TYPE, type);
     return this;
   }
 
@@ -197,7 +197,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries outputsize(Integer outputsize) {
-    addParam("outputsize", outputsize);
+    addParam(ApiParameters.OUTPUT_SIZE, outputsize);
     return this;
   }
 
@@ -208,7 +208,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries startDate(String startDate) {
-    addParam("start_date", startDate);
+    addParam(ApiParameters.START_DATE, startDate);
     return this;
   }
 
@@ -219,7 +219,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries endDate(String endDate) {
-    addParam("end_date", endDate);
+    addParam(ApiParameters.END_DATE, endDate);
     return this;
   }
 
@@ -230,7 +230,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries dp(Integer dp) {
-    addParam("dp", dp);
+    addParam(ApiParameters.DP, dp);
     return this;
   }
 
@@ -241,7 +241,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries timezone(String timezone) {
-    addParam("timezone", timezone);
+    addParam(ApiParameters.TIMEZONE, timezone);
     return this;
   }
 
@@ -254,7 +254,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries timezone(ZoneId zoneId) {
-    addParam("timezone", zoneId.getId());
+    addParam(ApiParameters.TIMEZONE, zoneId.getId());
     return this;
   }
 
@@ -265,7 +265,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries order(String order) {
-    addParam("order", order);
+    addParam(ApiParameters.ORDER, order);
     return this;
   }
 
@@ -276,7 +276,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries prepost(String prepost) {
-    addParam("prepost", prepost);
+    addParam(ApiParameters.PREPOST, prepost);
     return this;
   }
 
@@ -287,7 +287,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries prepost(Boolean prepost) {
-    addParam("prepost", prepost);
+    addParam(ApiParameters.PREPOST, prepost);
     return this;
   }
 
@@ -298,7 +298,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries date(String date) {
-    addParam("date", date);
+    addParam(ApiParameters.DATE, date);
     return this;
   }
 
@@ -309,7 +309,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries micCode(String micCode) {
-    addParam("mic_code", micCode);
+    addParam(ApiParameters.MIC_CODE, micCode);
     return this;
   }
 
@@ -320,7 +320,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries previousClose(String previousClose) {
-    addParam("previous_close", previousClose);
+    addParam(ApiParameters.PREVIOUS_CLOSE, previousClose);
     return this;
   }
 
@@ -331,7 +331,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries adjust(String adjust) {
-    addParam("adjust", adjust);
+    addParam(ApiParameters.ADJUST, adjust);
     return this;
   }
 
@@ -342,7 +342,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries figi(String figi) {
-    addParam("figi", figi);
+    addParam(ApiParameters.FIGI, figi);
     return this;
   }
 
@@ -353,7 +353,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries isin(String isin) {
-    addParam("isin", isin);
+    addParam(ApiParameters.ISIN, isin);
     return this;
   }
 
@@ -364,7 +364,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries cusip(String cusip) {
-    addParam("cusip", cusip);
+    addParam(ApiParameters.CUSIP, cusip);
     return this;
   }
 
@@ -375,7 +375,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries format(String format) {
-    addParam("format", format);
+    addParam(ApiParameters.FORMAT, format);
     return this;
   }
 
@@ -386,7 +386,7 @@ public class TimeSeries extends Endpoint {
    * @return this TimeSeries instance for method chaining
    */
   public TimeSeries delimiter(String delimiter) {
-    addParam("delimiter", delimiter);
+    addParam(ApiParameters.DELIMITER, delimiter);
     return this;
   }
 

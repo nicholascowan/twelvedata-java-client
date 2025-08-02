@@ -59,7 +59,7 @@ public class Price extends Endpoint {
    */
   public Price(TwelveDataContext context, String symbol) {
     super(context);
-    addParam("symbol", symbol);
+    addParam(ApiParameters.SYMBOL, symbol);
   }
 
   /**
@@ -84,13 +84,13 @@ public class Price extends Endpoint {
       String prepost,
       String micCode) {
     super(context);
-    addParam("symbol", symbol);
-    addParam("exchange", exchange);
-    addParam("country", country);
-    addParam("type", type);
-    addParam("dp", dp);
-    addParam("prepost", prepost);
-    addParam("mic_code", micCode);
+    addParam(ApiParameters.SYMBOL, symbol);
+    addParam(ApiParameters.EXCHANGE, exchange);
+    addParam(ApiParameters.COUNTRY, country);
+    addParam(ApiParameters.TYPE, type);
+    addParam(ApiParameters.DP, dp);
+    addParam(ApiParameters.PREPOST, prepost);
+    addParam(ApiParameters.MIC_CODE, micCode);
   }
 
   @Override
@@ -105,7 +105,7 @@ public class Price extends Endpoint {
    * @return this Price instance for method chaining
    */
   public Price symbol(String symbol) {
-    addParam("symbol", symbol);
+    addParam(ApiParameters.SYMBOL, symbol);
     return this;
   }
 
@@ -116,7 +116,7 @@ public class Price extends Endpoint {
    * @return this Price instance for method chaining
    */
   public Price exchange(String exchange) {
-    addParam("exchange", exchange);
+    addParam(ApiParameters.EXCHANGE, exchange);
     return this;
   }
 
@@ -127,7 +127,7 @@ public class Price extends Endpoint {
    * @return this Price instance for method chaining
    */
   public Price country(String country) {
-    addParam("country", country);
+    addParam(ApiParameters.COUNTRY, country);
     return this;
   }
 
@@ -138,7 +138,7 @@ public class Price extends Endpoint {
    * @return this Price instance for method chaining
    */
   public Price type(String type) {
-    addParam("type", type);
+    addParam(ApiParameters.TYPE, type);
     return this;
   }
 
@@ -149,7 +149,7 @@ public class Price extends Endpoint {
    * @return this Price instance for method chaining
    */
   public Price dp(Integer dp) {
-    addParam("dp", dp);
+    addParam(ApiParameters.DP, dp);
     return this;
   }
 
@@ -160,7 +160,7 @@ public class Price extends Endpoint {
    * @return this Price instance for method chaining
    */
   public Price prepost(String prepost) {
-    addParam("prepost", prepost);
+    addParam(ApiParameters.PREPOST, prepost);
     return this;
   }
 
@@ -171,7 +171,7 @@ public class Price extends Endpoint {
    * @return this Price instance for method chaining
    */
   public Price prepost(Boolean prepost) {
-    addParam("prepost", prepost);
+    addParam(ApiParameters.PREPOST, prepost);
     return this;
   }
 
@@ -182,7 +182,7 @@ public class Price extends Endpoint {
    * @return this Price instance for method chaining
    */
   public Price micCode(String micCode) {
-    addParam("mic_code", micCode);
+    addParam(ApiParameters.MIC_CODE, micCode);
     return this;
   }
 
@@ -193,7 +193,7 @@ public class Price extends Endpoint {
    * @return this Price instance for method chaining
    */
   public Price figi(String figi) {
-    addParam("figi", figi);
+    addParam(ApiParameters.FIGI, figi);
     return this;
   }
 
@@ -204,7 +204,7 @@ public class Price extends Endpoint {
    * @return this Price instance for method chaining
    */
   public Price isin(String isin) {
-    addParam("isin", isin);
+    addParam(ApiParameters.ISIN, isin);
     return this;
   }
 
@@ -215,7 +215,7 @@ public class Price extends Endpoint {
    * @return this Price instance for method chaining
    */
   public Price cusip(String cusip) {
-    addParam("cusip", cusip);
+    addParam(ApiParameters.CUSIP, cusip);
     return this;
   }
 
@@ -226,7 +226,7 @@ public class Price extends Endpoint {
    * @return this Price instance for method chaining
    */
   public Price format(String format) {
-    addParam("format", format);
+    addParam(ApiParameters.FORMAT, format);
     return this;
   }
 
@@ -237,7 +237,7 @@ public class Price extends Endpoint {
    * @return this Price instance for method chaining
    */
   public Price delimiter(String delimiter) {
-    addParam("delimiter", delimiter);
+    addParam(ApiParameters.DELIMITER, delimiter);
     return this;
   }
 

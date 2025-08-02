@@ -61,7 +61,7 @@ public class Quote extends Endpoint {
    */
   public Quote(TwelveDataContext context, String symbol) {
     super(context);
-    addParam("symbol", symbol);
+    addParam(ApiParameters.SYMBOL, symbol);
   }
 
   /**
@@ -96,18 +96,18 @@ public class Quote extends Endpoint {
       String eod,
       String rollingPeriod) {
     super(context);
-    addParam("symbol", symbol);
-    addParam("interval", interval);
-    addParam("exchange", exchange);
-    addParam("country", country);
-    addParam("volume_time_period", volumeTimePeriod);
-    addParam("type", type);
-    addParam("dp", dp);
-    addParam("timezone", timezone);
-    addParam("prepost", prepost);
-    addParam("mic_code", micCode);
-    addParam("eod", eod);
-    addParam("rolling_period", rollingPeriod);
+    addParam(ApiParameters.SYMBOL, symbol);
+    addParam(ApiParameters.INTERVAL, interval);
+    addParam(ApiParameters.EXCHANGE, exchange);
+    addParam(ApiParameters.COUNTRY, country);
+    addParam(ApiParameters.VOLUME_TIME_PERIOD, volumeTimePeriod);
+    addParam(ApiParameters.TYPE, type);
+    addParam(ApiParameters.DP, dp);
+    addParam(ApiParameters.TIMEZONE, timezone);
+    addParam(ApiParameters.PREPOST, prepost);
+    addParam(ApiParameters.MIC_CODE, micCode);
+    addParam(ApiParameters.EOD, eod);
+    addParam(ApiParameters.ROLLING_PERIOD, rollingPeriod);
   }
 
   @Override
@@ -122,7 +122,7 @@ public class Quote extends Endpoint {
    * @return this Quote instance for method chaining
    */
   public Quote symbol(String symbol) {
-    addParam("symbol", symbol);
+    addParam(ApiParameters.SYMBOL, symbol);
     return this;
   }
 
@@ -133,7 +133,7 @@ public class Quote extends Endpoint {
    * @return this Quote instance for method chaining
    */
   public Quote interval(String interval) {
-    addParam("interval", interval);
+    addParam(ApiParameters.INTERVAL, interval);
     return this;
   }
 
@@ -144,7 +144,7 @@ public class Quote extends Endpoint {
    * @return this Quote instance for method chaining
    */
   public Quote exchange(String exchange) {
-    addParam("exchange", exchange);
+    addParam(ApiParameters.EXCHANGE, exchange);
     return this;
   }
 
@@ -155,7 +155,7 @@ public class Quote extends Endpoint {
    * @return this Quote instance for method chaining
    */
   public Quote country(String country) {
-    addParam("country", country);
+    addParam(ApiParameters.COUNTRY, country);
     return this;
   }
 
@@ -166,7 +166,7 @@ public class Quote extends Endpoint {
    * @return this Quote instance for method chaining
    */
   public Quote volumeTimePeriod(String volumeTimePeriod) {
-    addParam("volume_time_period", volumeTimePeriod);
+    addParam(ApiParameters.VOLUME_TIME_PERIOD, volumeTimePeriod);
     return this;
   }
 
@@ -177,7 +177,7 @@ public class Quote extends Endpoint {
    * @return this Quote instance for method chaining
    */
   public Quote volumeTimePeriod(Integer volumeTimePeriod) {
-    addParam("volume_time_period", volumeTimePeriod);
+    addParam(ApiParameters.VOLUME_TIME_PERIOD, volumeTimePeriod);
     return this;
   }
 
@@ -188,7 +188,7 @@ public class Quote extends Endpoint {
    * @return this Quote instance for method chaining
    */
   public Quote type(String type) {
-    addParam("type", type);
+    addParam(ApiParameters.TYPE, type);
     return this;
   }
 
@@ -199,7 +199,7 @@ public class Quote extends Endpoint {
    * @return this Quote instance for method chaining
    */
   public Quote dp(Integer dp) {
-    addParam("dp", dp);
+    addParam(ApiParameters.DP, dp);
     return this;
   }
 
@@ -210,7 +210,7 @@ public class Quote extends Endpoint {
    * @return this Quote instance for method chaining
    */
   public Quote timezone(String timezone) {
-    addParam("timezone", timezone);
+    addParam(ApiParameters.TIMEZONE, timezone);
     return this;
   }
 
@@ -223,7 +223,7 @@ public class Quote extends Endpoint {
    * @return this Quote instance for method chaining
    */
   public Quote timezone(ZoneId zoneId) {
-    addParam("timezone", zoneId.getId());
+    addParam(ApiParameters.TIMEZONE, zoneId.getId());
     return this;
   }
 
@@ -234,7 +234,7 @@ public class Quote extends Endpoint {
    * @return this Quote instance for method chaining
    */
   public Quote prepost(String prepost) {
-    addParam("prepost", prepost);
+    addParam(ApiParameters.PREPOST, prepost);
     return this;
   }
 
@@ -245,7 +245,7 @@ public class Quote extends Endpoint {
    * @return this Quote instance for method chaining
    */
   public Quote prepost(Boolean prepost) {
-    addParam("prepost", prepost);
+    addParam(ApiParameters.PREPOST, prepost);
     return this;
   }
 
@@ -256,7 +256,7 @@ public class Quote extends Endpoint {
    * @return this Quote instance for method chaining
    */
   public Quote micCode(String micCode) {
-    addParam("mic_code", micCode);
+    addParam(ApiParameters.MIC_CODE, micCode);
     return this;
   }
 
@@ -267,7 +267,7 @@ public class Quote extends Endpoint {
    * @return this Quote instance for method chaining
    */
   public Quote eod(String eod) {
-    addParam("eod", eod);
+    addParam(ApiParameters.EOD, eod);
     return this;
   }
 
@@ -278,7 +278,7 @@ public class Quote extends Endpoint {
    * @return this Quote instance for method chaining
    */
   public Quote eod(Boolean eod) {
-    addParam("eod", eod);
+    addParam(ApiParameters.EOD, eod);
     return this;
   }
 
@@ -289,7 +289,7 @@ public class Quote extends Endpoint {
    * @return this Quote instance for method chaining
    */
   public Quote rollingPeriod(String rollingPeriod) {
-    addParam("rolling_period", rollingPeriod);
+    addParam(ApiParameters.ROLLING_PERIOD, rollingPeriod);
     return this;
   }
 
@@ -300,7 +300,7 @@ public class Quote extends Endpoint {
    * @return this Quote instance for method chaining
    */
   public Quote rollingPeriod(Integer rollingPeriod) {
-    addParam("rolling_period", rollingPeriod);
+    addParam(ApiParameters.ROLLING_PERIOD, rollingPeriod);
     return this;
   }
 
@@ -311,7 +311,7 @@ public class Quote extends Endpoint {
    * @return this Quote instance for method chaining
    */
   public Quote figi(String figi) {
-    addParam("figi", figi);
+    addParam(ApiParameters.FIGI, figi);
     return this;
   }
 
@@ -322,7 +322,7 @@ public class Quote extends Endpoint {
    * @return this Quote instance for method chaining
    */
   public Quote isin(String isin) {
-    addParam("isin", isin);
+    addParam(ApiParameters.ISIN, isin);
     return this;
   }
 
@@ -333,7 +333,7 @@ public class Quote extends Endpoint {
    * @return this Quote instance for method chaining
    */
   public Quote cusip(String cusip) {
-    addParam("cusip", cusip);
+    addParam(ApiParameters.CUSIP, cusip);
     return this;
   }
 
@@ -344,7 +344,7 @@ public class Quote extends Endpoint {
    * @return this Quote instance for method chaining
    */
   public Quote format(String format) {
-    addParam("format", format);
+    addParam(ApiParameters.FORMAT, format);
     return this;
   }
 
@@ -355,7 +355,7 @@ public class Quote extends Endpoint {
    * @return this Quote instance for method chaining
    */
   public Quote delimiter(String delimiter) {
-    addParam("delimiter", delimiter);
+    addParam(ApiParameters.DELIMITER, delimiter);
     return this;
   }
 
