@@ -29,8 +29,8 @@
         <gpg.plugin.version>3.2.8</gpg.plugin.version>
         <nexus.plugin.version>1.7.0</nexus.plugin.version>
         <checkstyle.plugin.version>3.6.0</checkstyle.plugin.version>
-        <pmd.plugin.version>3.21.2</pmd.plugin.version>
-        <spotbugs.plugin.version>4.8.2.0</spotbugs.plugin.version>
+        <pmd.plugin.version>3.27.0</pmd.plugin.version>
+        <spotbugs.plugin.version>4.9.3.2</spotbugs.plugin.version>
         <jacoco.plugin.version>0.8.13</jacoco.plugin.version>
     </properties>
 
@@ -146,7 +146,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
-                    <version>3.3.0</version>
+                    <version>3.3.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -189,7 +189,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.3.1</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -462,7 +462,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-deploy-plugin</artifactId>
-                        <version>3.1.2</version>
+                        <version>3.1.4</version>
                         <configuration>
                             <skip>false</skip>
                         </configuration>
@@ -479,7 +479,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>flatten-maven-plugin</artifactId>
-                        <version>1.5.0</version>
+                        <version>1.7.2</version>
                         <configuration>
                             <updatePomFile>true</updatePomFile>
                             <flattenMode>oss</flattenMode>
