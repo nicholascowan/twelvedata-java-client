@@ -11,7 +11,7 @@ import java.time.ZoneId;
 /**
  * Provides access to daily time series data (OHLC - Open, High, Low, Close) from the TwelveData API.
  * 
- * <p>This endpoint is a convenience wrapper around the TimeSeries endpoint with a fixed interval of "1day".
+ * <p>This endpoint is a convenience wrapper around the TimeSeries endpoint with a fixed interval of {@link #DAILY_INTERVAL}.
  * It allows you to retrieve daily historical price data for stocks, ETFs, and other financial instruments
  * without having to specify the interval parameter.</p>
  * 
@@ -54,14 +54,19 @@ import java.time.ZoneId;
 public class Daily extends TimeSeries {
 
   /**
+   * The fixed interval for daily time series data.
+   */
+  private static final String DAILY_INTERVAL = "1day";
+
+  /**
    * Constructs a new Daily endpoint with the given context.
    *
    * @param context the TwelveData context containing configuration and HTTP client
    */
   public Daily(TwelveDataContext context) {
     super(context);
-    // Set the fixed interval to "1day"
-    addParam(ApiParameters.INTERVAL, "1day");
+    // Set the fixed interval to daily
+    addParam(ApiParameters.INTERVAL, DAILY_INTERVAL);
   }
 
   /**
@@ -71,7 +76,7 @@ public class Daily extends TimeSeries {
    * @param symbol the stock symbol (e.g., "AAPL", "MSFT", "GOOGL")
    */
   public Daily(TwelveDataContext context, String symbol) {
-    super(context, symbol, "1day");
+    super(context, symbol, DAILY_INTERVAL);
   }
 
   /**
@@ -111,7 +116,7 @@ public class Daily extends TimeSeries {
       String micCode,
       String previousClose,
       String adjust) {
-    super(context, symbol, "1day", exchange, country, type, outputsize, startDate, endDate, dp, timezone, order, prepost, date, micCode, previousClose, adjust);
+    super(context, symbol, DAILY_INTERVAL, exchange, country, type, outputsize, startDate, endDate, dp, timezone, order, prepost, date, micCode, previousClose, adjust);
   }
 
   @Override

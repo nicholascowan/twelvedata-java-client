@@ -6,7 +6,7 @@ package com.github.nicholascowan.twelvedata.models;
  * <p>This class extends {@link TimeSeriesResponse} to provide a more specific type
  * for daily time series data. It represents the response from the TwelveData API's
  * Daily endpoint, which provides daily OHLC (Open, High, Low, Close) data with a
- * fixed interval of "1day".</p>
+ * fixed interval of {@link #DAILY_INTERVAL}.</p>
  *
  * <p>Example response:</p>
  * <pre>{@code
@@ -14,7 +14,7 @@ package com.github.nicholascowan.twelvedata.models;
  *     "status": "ok",
  *     "meta": {
  *         "symbol": "AAPL",
- *         "interval": "1day",
+ *         "interval": "1day", // This is the value of DAILY_INTERVAL
  *         "currency": "USD",
  *         "exchange_timezone": "America/New_York",
  *         "exchange": "NASDAQ",
@@ -45,6 +45,11 @@ package com.github.nicholascowan.twelvedata.models;
 public class DailyResponse extends TimeSeriesResponse {
 
   /**
+   * The fixed interval for daily time series data.
+   */
+  private static final String DAILY_INTERVAL = "1day";
+
+  /**
    * Default constructor.
    */
   public DailyResponse() {
@@ -66,9 +71,9 @@ public class DailyResponse extends TimeSeriesResponse {
    * Gets the daily interval from the metadata.
    *
    * <p>This method provides a convenient way to verify that the response
-   * contains daily data. The interval should always be "1day" for DailyResponse.</p>
+   * contains daily data. The interval should always be {@link #DAILY_INTERVAL} for DailyResponse.</p>
    *
-   * @return the interval (should always be "1day")
+   * @return the interval (should always be {@link #DAILY_INTERVAL})
    */
   public String getDailyInterval() {
     return getMeta() != null ? getMeta().getInterval() : null;
@@ -77,14 +82,14 @@ public class DailyResponse extends TimeSeriesResponse {
   /**
    * Verifies that this response contains daily data.
    *
-   * <p>This method checks if the interval in the metadata is "1day",
+   * <p>This method checks if the interval in the metadata is {@link #DAILY_INTERVAL},
    * which should always be true for DailyResponse objects.</p>
    *
-   * @return true if the interval is "1day", false otherwise
+   * @return true if the interval is {@link #DAILY_INTERVAL}, false otherwise
    */
   public boolean isDailyData() {
     String interval = getDailyInterval();
-    return "1day".equals(interval);
+    return DAILY_INTERVAL.equals(interval);
   }
 
   /**
