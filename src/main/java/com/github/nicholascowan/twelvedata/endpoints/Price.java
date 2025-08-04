@@ -4,6 +4,7 @@ import com.github.nicholascowan.twelvedata.TwelveDataContext;
 import com.github.nicholascowan.twelvedata.exceptions.TwelveDataException;
 import com.github.nicholascowan.twelvedata.models.ModelUtils;
 import com.github.nicholascowan.twelvedata.models.PriceResponse;
+import io.micrometer.core.annotation.Timed;
 
 /**
  * Provides access to real-time price data from the TwelveData API.
@@ -254,6 +255,9 @@ public class Price extends Endpoint {
    * @see PriceResponse
    * @see TwelveDataException
    */
+  @Timed(value = "twelvedata.price.duration", 
+         description = "Time taken for Price API calls",
+         extraTags = {"endpoint", "price"})
   public PriceResponse asObject() throws TwelveDataException {
     return ModelUtils.toPriceResponse(asJson());
   }

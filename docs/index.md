@@ -55,6 +55,12 @@ QuoteResponse quoteData = client.quote("AAPL").asObject();
 
 // Get price data
 PriceResponse priceData = client.price("AAPL").asObject();
+
+// Get daily time series data
+TimeSeriesResponse dailyData = client.daily("AAPL").asObject();
+
+// Get end-of-day data
+EndOfDayResponse eodData = client.endOfDay("AAPL").asObject();
 ```
 
 ## Features

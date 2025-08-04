@@ -6,6 +6,7 @@ import com.github.nicholascowan.twelvedata.TwelveDataContext;
 import com.github.nicholascowan.twelvedata.exceptions.TwelveDataException;
 import com.github.nicholascowan.twelvedata.models.ErrorResponse;
 import com.github.nicholascowan.twelvedata.models.ModelUtils;
+import io.micrometer.core.annotation.Timed;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,6 +62,15 @@ public abstract class Endpoint {
   protected abstract String getEndpointName();
 
   /**
+   * Gets the endpoint name for metrics and logging.
+   *
+   * @return the endpoint name for metrics
+   */
+  public String getEndpointNameForMetrics() {
+    return getEndpointName();
+  }
+
+  /**
    * Executes the endpoint request and returns JSON response.
    *
    * <p>This method makes an HTTP GET request to the API endpoint with the current parameters and
@@ -69,6 +79,9 @@ public abstract class Endpoint {
    * @return the API response as a JsonNode
    * @throws TwelveDataException if the API request fails or returns an error
    */
+  @Timed(value = "twelvedata.api.duration", 
+         description = "Time taken for API requests",
+         extraTags = {"endpoint", "#{@getEndpointNameForMetrics()}"})
   public JsonNode asJson() throws TwelveDataException {
     try {
       String response = context.getHttpClient().get("/" + getEndpointName(), params);
@@ -90,6 +103,9 @@ public abstract class Endpoint {
    * @return the API response as a CSV string
    * @throws TwelveDataException if the API request fails or returns an error
    */
+  @Timed(value = "twelvedata.api.duration", 
+         description = "Time taken for API requests",
+         extraTags = {"endpoint", "#{@getEndpointNameForMetrics()}"})
   public String asCsv() throws TwelveDataException {
     try {
       return context.getHttpClient().getCsv("/" + getEndpointName(), params);

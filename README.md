@@ -8,6 +8,17 @@
 
 A Java client library for the TwelveData API, providing easy access to financial market data. This was heavily inspired by other clients.
 
+## ⚠️ Development Status
+
+**This library is currently in active development and should not be used in production environments.** We recommend:
+
+- **Testing thoroughly** before using in production environments
+- **Pinning to specific versions** if you need stability
+- **Monitoring releases** for breaking changes
+- **Providing feedback** through issues or discussions
+
+The API is not yet considered stable for production use.
+
 ## Quick Start
 
 ### Prerequisites

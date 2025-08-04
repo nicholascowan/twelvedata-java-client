@@ -4,6 +4,7 @@ import com.github.nicholascowan.twelvedata.TwelveDataContext;
 import com.github.nicholascowan.twelvedata.exceptions.TwelveDataException;
 import com.github.nicholascowan.twelvedata.models.ModelUtils;
 import com.github.nicholascowan.twelvedata.models.QuoteResponse;
+import io.micrometer.core.annotation.Timed;
 import java.time.ZoneId;
 
 /**
@@ -372,6 +373,9 @@ public class Quote extends Endpoint {
    * @see QuoteResponse
    * @see TwelveDataException
    */
+  @Timed(value = "twelvedata.quote.duration", 
+         description = "Time taken for Quote API calls",
+         extraTags = {"endpoint", "quote"})
   public QuoteResponse asObject() throws TwelveDataException {
     return ModelUtils.toQuoteResponse(asJson());
   }

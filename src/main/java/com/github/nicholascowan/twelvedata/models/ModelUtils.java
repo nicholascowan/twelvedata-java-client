@@ -244,6 +244,63 @@ public class ModelUtils {
     return response;
   }
 
+  /** Convert JsonNode to EndOfDayResponse. */
+  public static EndOfDayResponse toEndOfDayResponse(JsonNode jsonNode) {
+    if (jsonNode == null) {
+      return null;
+    }
+
+    // Check for error response first
+    checkForError(jsonNode);
+
+    EndOfDayResponse response = new EndOfDayResponse();
+
+    if (jsonNode.has("symbol")) {
+      response.setSymbol(jsonNode.get("symbol").asText());
+    }
+    if (jsonNode.has("exchange")) {
+      response.setExchange(jsonNode.get("exchange").asText());
+    }
+    if (jsonNode.has("mic_code")) {
+      response.setMicCode(jsonNode.get("mic_code").asText());
+    }
+    if (jsonNode.has("currency")) {
+      response.setCurrency(jsonNode.get("currency").asText());
+    }
+    if (jsonNode.has("datetime")) {
+      response.setDatetime(jsonNode.get("datetime").asText());
+    }
+    if (jsonNode.has("close")) {
+      response.setClose(jsonNode.get("close").asText());
+    }
+
+    return response;
+  }
+
+  /** Convert JsonNode to DailyResponse. */
+  public static DailyResponse toDailyResponse(JsonNode jsonNode) {
+    if (jsonNode == null) {
+      return null;
+    }
+
+    // Check for error response first
+    checkForError(jsonNode);
+
+    // Convert to TimeSeriesResponse first, then to DailyResponse
+    TimeSeriesResponse timeSeriesResponse = toTimeSeriesResponse(jsonNode);
+    if (timeSeriesResponse == null) {
+      return null;
+    }
+
+    DailyResponse response = new DailyResponse(
+        timeSeriesResponse.getStatus(),
+        timeSeriesResponse.getMeta(),
+        timeSeriesResponse.getValues()
+    );
+
+    return response;
+  }
+
   /** Convert JsonNode to ErrorResponse. */
   public static ErrorResponse toErrorResponse(JsonNode jsonNode) {
     if (jsonNode == null) {

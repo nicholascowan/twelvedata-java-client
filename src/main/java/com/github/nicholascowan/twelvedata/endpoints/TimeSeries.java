@@ -4,6 +4,7 @@ import com.github.nicholascowan.twelvedata.TwelveDataContext;
 import com.github.nicholascowan.twelvedata.exceptions.TwelveDataException;
 import com.github.nicholascowan.twelvedata.models.ModelUtils;
 import com.github.nicholascowan.twelvedata.models.TimeSeriesResponse;
+import io.micrometer.core.annotation.Timed;
 import java.time.ZoneId;
 
 /**
@@ -403,6 +404,9 @@ public class TimeSeries extends Endpoint {
    * @see TimeSeriesResponse
    * @see TwelveDataException
    */
+  @Timed(value = "twelvedata.timeseries.duration", 
+         description = "Time taken for TimeSeries API calls",
+         extraTags = {"endpoint", "time_series"})
   public TimeSeriesResponse asObject() throws TwelveDataException {
     return ModelUtils.toTimeSeriesResponse(asJson());
   }
